@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Task 0</title>
+</head>
+<body style="font-size: 1.2rem; font-family: Arial; padding: 2rem 5rem;">
+    <h3>Задача 0</h3>
+    <p>Обчислити значення виразів:</p>
+    <img style="display: block; margin-bottom: 1.5rem" src="task0.png" alt="Task0">
+
+    <script>
+        // Початок
+        // 1. Ввод необхідних даних
+        const a = parseFloat(prompt('Введіть число для першого аргумента (a):'))
+        const b = parseFloat(prompt('Введіть число для другого аргумента (b):'))
+        const c = parseFloat(prompt('Введіть число для третього аргумента (c):'))
+        let s1, s2, s3, s4
+        // 2. Обчислення результату
+        s1 = a + 12 + b
+        s2 = Math.sqrt((a + b) / (2 * a))
+        s3 = Math.cbrt((a + b) * c)
+        s4 = Math.sin(a / -b)
+        // 3. Вивід результату
+        document.write(`
+            1) S1 = ${s1} <br>
+            2) S2 = ${s2.toFixed(1)} <br>
+            3) S3 = ${s3.toFixed(1)} <br>
+            4) S4 = ${s4.toFixed(1)} <br>
+        `)
+        // Кінець
+    </script>
+</body>
+</html>
