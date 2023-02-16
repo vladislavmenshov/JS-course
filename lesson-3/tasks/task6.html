@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Task 6</title>
+</head>
+<body>
+    <h1 class="title">Задача 6</h1>
+    <p class="text">З клавіатури вводиться номер дня тижня. Вивести на екран назву дня.</p>
+
+    <script>
+       
+       const numberOfDayWeek = parseInt(prompt("Введіть номер дня тижня:"))
+
+       switch (numberOfDayWeek) {
+            case 1:
+                document.write(`<p class="text-script">Цей номер дня є понеділок.</p>`)
+                break
+            case 2:
+                document.write(`<p class="text-script">Цей номер дня є вівторок.</p>`)
+                break
+            case 3: 
+                document.write(`<p class="text-script">Цей номер дня є середа.</p>`)
+                break
+            case 4: 
+                document.write(`<p class="text-script">Цей номер дня є четвер.</p>`)
+                break
+            case 5: 
+                document.write(`<p class="text-script">Цей номер дня є п'ятниця.</p>`)
+                break
+            case 6: 
+                document.write(`<p class="text-script">Цей номер дня є субота.</p>`)
+                break
+            case 7: 
+                document.write(`<p class="text-script">Цей номер дня є неділя.</p>`)
+                break
+            default:
+                document.write(`<p class="text-script">Ви ввели некоректне значення, будь-ласка введіть цифру від 1 до 7 включно.</p>`)
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Task 3</title>
+</head>
+<body>
+    <h1 class="title">Задача 3</h1>
+    <p class="text">Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.</p>
+
+    <script>
+        
+        const firstMinNum = 1, firstMaxNum = 5
+
+        let randomNumber = firstMinNum + Math.floor(Math.random() * (firstMaxNum - firstMinNum + 1))
+        let possibleNumber = parseInt(prompt("Спробуйте вгадати число від 1 до 5 (спроба 1):"))
+
+        if (possibleNumber < 1 || possibleNumber > 5) 
+            document.write(`<p class="text-script">Некоректний тип числа, введіть число від 1 до 5.</p>`)
+        else if (possibleNumber === randomNumber) {
+            document.write(`
+                <p class="text-script">Вітаю! Ви вгадали.</p>
+                <p class="text-script">Випадкове число: ${randomNumber}</p>
+            `)
+        } else
+            alert('У вас залишилась одна спроба')
+
+        possibleNumber = parseInt(prompt("Спробуйте вгадати число від 1 до 5 (спроба 2):"))
+
+        if (possibleNumber === randomNumber) {
+            document.write(`
+                <p class="text-script">Вітаю! Ви вгадали.</p>
+                <p class="text-script">Випадкове число: ${randomNumber}</p>
+            `)
+        } else {
+            document.write(`
+                <p class="text-script">Нажаль Ви не вгадали.</p>
+                <p class="text-script">Випадкове число: ${randomNumber}</p>
+            `)
+        }
+    </script>
+</body>
+</html>

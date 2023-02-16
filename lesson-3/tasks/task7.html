@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Task 7</title>
+</head>
+<body>
+    <h1 class="title">Задача 7</h1>
+    <p class="text">З клавіатури вводиться номер місяця. Вивести до якої пори він відноситься.</p>
+
+    <script>
+
+        const numberOfMonth = parseInt(prompt("Введіть номер місяця:"))
+
+        switch (numberOfMonth) {
+            case 1:
+            case 2:
+            case 12:
+                document.write(`<p class="text-script">Цей номер місяця відносить до зимової пори року.</p>`)
+                break
+            case 3:
+            case 4:
+            case 5:
+                document.write(`<p class="text-script">Цей номер місяця відносить до весняної пори року.</p>`)
+                break
+            case 6:
+            case 7:
+            case 8:
+                document.write(`<p class="text-script">Цей номер місяця відносить до літної пори року.</p>`)
+                break
+            case 9:
+            case 10:
+            case 11:
+                document.write(`<p class="text-script">Цей номер місяця відносить до осінньої пори року.</p>`)
+                break
+            default:
+                document.write(`<p class="text-script">Ви ввели некоректне значення, будь-ласка введіть цифру від 1 до 12 включно.</p>`)
+        }
+
+    </script>
+</body>
+</html>

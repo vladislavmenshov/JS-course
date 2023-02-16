@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Task 5</title>
+</head>
+<body>
+    <h1 class="title">Задача 5</h1>
+    <p class="text">З клавіатури вводиться назва категорії водія (А-мотоцикл, В-легковий автомобіль, С-вантажний автомобіль). Вивести на екран назву транспортного засобу, яким він може керувати.</p>
+
+    <script>
+
+        const driverCategory = prompt("Введіть Вашу категорію водія (А, В, С):")
+
+        switch (driverCategory) {
+            case 'A':
+            case 'А':
+            case 'a':
+            case 'а':
+                document.write(`<p class="text-script">Ви можете керувати мотоциклом.</p>`)
+                break
+            case 'B':
+            case 'В':
+            case 'b':
+            case 'в':
+                document.write(`<p class="text-script">Ви можете керувати легковим автомобілем.</p>`)
+                break
+            case 'C':
+            case 'С':
+            case 'с':    
+            case 'с':    
+                document.write(`<p class="text-script">Ви можете керувати вантажним автомобілем.</p>`)
+                break
+            default:
+                document.write(`<p class="text-script">Ви ввели некоректне значення.</p>`)
+        }
+
+    </script>
+</body>
+</html>

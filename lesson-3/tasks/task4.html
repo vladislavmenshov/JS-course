@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Task 4</title>
+</head>
+<body>
+    <h1 class="title">Задача 4</h1>
+    <p class="text">З клавіатури вводиться вік людини. Вивести на екран ким він є (дитиною у садочку, школярем, студентом, працівником, пенсіонером).</p>
+
+    <script>
+        
+        const userAge = parseInt(prompt("Введіть Ваш вік:"))
+
+        if (userAge <= 1)
+            document.write(`<p class="text-script">Да Ви зовсім немовля!</p>`)
+        else if (userAge <= 6 && userAge >= 2)
+            document.write(`<p class="text-script">Ви мабуть дитина у садочку.</p>`)
+        else if (userAge >= 7 && userAge <= 18)
+            document.write(`<p class="text-script">Ви школяр!</p>`)
+        else if (userAge > 18 && userAge <= 23)
+            document.write(`<p class="text-script">Ви студент!</p>`)
+        else if (userAge > 23 && userAge <= 60)
+            document.write(`<p class="text-script">Ви працівник!</p>`)
+        else if (userAge >= 60 && userAge <= 100)
+            document.write(`<p class="text-script">Ви пенсіонер!</p>`)
+        else
+            document.write(`<p class="text-script">Некоректне значення.</p>`)
+            
+    </script>
+</body>
+</html>
