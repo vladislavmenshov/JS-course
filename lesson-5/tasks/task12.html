@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 12</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 12</h1>
+    <p class="text">
+      Ігровий автомат. Випадково вибираємо зображення у 3 позиціях. Вибір у кожній позиції вибирається як одне з чотирьох зображень. Вивести ці зображення і повідомити виграш користувача (три перших зображення 100 грн, три других – 200, три третіх –
+      500, три четвертих зображення – 1000грн). Використати цикли і switch (для вибору зображення заномером).
+    </p>
+    <script>
+      const firstRandomNumber = Math.floor(1 + Math.random() * 4),
+        secondRandomNumber = Math.floor(1 + Math.random() * 4),
+        thirdRandomNumber = Math.floor(1 + Math.random() * 4)
+
+      let templateImages = ""
+
+      for (let i = 0; i < 3; i++) {
+        let indexImg
+        switch (i) {
+          case 0:
+            indexImg = firstRandomNumber
+            break
+          case 1:
+            indexImg = secondRandomNumber
+            break
+          case 2:
+            indexImg = thirdRandomNumber
+            break
+        }
+        templateImages += `<img src="img/task12/${indexImg}.png" alt="Png">`
+      }
+
+      let prizeSum = 0
+      if (firstRandomNumber === secondRandomNumber && firstRandomNumber === thirdRandomNumber) {
+        switch (firstRandomNumber) {
+          case 1:
+            prizeSum = "100 грн"
+            break
+          case 2:
+            prizeSum = "200 грн"
+            break
+          case 3:
+            prizeSum = "500 грн"
+            break
+          case 4:
+            prizeSum = "1000 грн"
+            break
+        }
+      } else prizeSum = "Не в цей раз, спробуй ще!"
+
+      document.write(`
+        <div class='text-script'>
+          Ваш виграш: ${prizeSum}
+        </div>
+        <div class='text-script'>
+          ${templateImages}
+        </div>
+      `)
+    </script>
+  </body>
+</html>

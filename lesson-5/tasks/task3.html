@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Task 3</title>
+</head>
+<body>
+    <h1 class="title">Задача 3</h1>
+    <p class="text">Вивести таблицю з одним рядком і 7 стовпцями.</p>
+    <script>
+        const quantityColumns = 7
+        let columns = ''
+
+        for (let i = 1; i <= quantityColumns; i++) {
+            columns += `<td style="border: 1px solid #fff; padding: 5px;">${i}</td>`
+        }
+
+        document.write(`
+            <table class="text-script" border='2px'>
+                <tr>
+                    ${columns}
+                </tr>
+            </table>
+        `)
+    </script>
+</body>
+</html>

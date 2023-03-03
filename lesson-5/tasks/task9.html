@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 9</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 9</h1>
+    <p class="text">Користувач загадує число. Комп’ютер задає питання поки не вгадає число користувача (використати confirm).</p>
+    <script>
+      let userNumber = parseInt(prompt("Загадайте ціле число і я спробую його вгадати за 3 спроби:")),
+        guessedNumber = false,
+        randomNumber
+
+      do {
+        if (!isFinite(userNumber)) {
+          alert("Помилка, введіть будь-ласка коректне ціле число.")
+          userNumber = parseInt(prompt("Загадайте ціле число і я спробую його вгадати за 3 спроби:"))
+          continue
+        }
+        if (userNumber < 0) randomNumber = Math.ceil(Math.random() * (userNumber - 1))
+        else randomNumber = Math.floor(Math.random() * (userNumber + 1))
+
+        const confirmationNumber = confirm(`Це число ${randomNumber}?`)
+
+        if (confirmationNumber && userNumber === randomNumber) {
+          alert(`Я вгадав! Це число ${userNumber}`)
+          guessedNumber = true
+        }
+      } while (!guessedNumber)
+    </script>
+  </body>
+</html>

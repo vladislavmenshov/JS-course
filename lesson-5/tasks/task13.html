@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 13</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 13</h1>
+    <p class="text">Морський бій. Комп’ютер випадково розташовує одиночний корабель на полі розміром N*M. Маючи К снарядів користувач намагається потопити корабель.</p>
+    <script>
+      const userAmountRows = parseInt(prompt("Введіть кількість рядків на полі бою (вісь x):")),
+        userAmountColumns = parseInt(prompt("Введіть кількість колонок на полі бою (вісь у):"))
+      let amountRockets = parseInt(prompt("Введіть кількість снарядів якими будете намагатись потопити 'російський военний корабль':"))
+
+      const positionShipX = Math.floor(1 + Math.random() * userAmountRows),
+        positionShipY = Math.floor(1 + Math.random() * userAmountColumns)
+
+      if (!isFinite(amountRockets)) {
+        alert("Введіть корректне значення кількості снарядів.")
+      } else {
+        alert("До бою!")
+      }
+
+      for (let i = 0; i < amountRockets; i++) {
+        let firstShotOnRows = parseInt(prompt(`Введіть клітинку для пострілу по осі x (від 1 до ${userAmountRows}):`)),
+          firstShotOnColumns = parseInt(prompt(`Введіть клітинку для пострілу по осі y (від 1 до ${userAmountColumns}):`))
+
+        if (firstShotOnRows === positionShipX && firstShotOnColumns === positionShipY) {
+          alert("Вітаю! Ви перемогли!")
+          break
+        } else if (firstShotOnRows === positionShipX || firstShotOnColumns === positionShipY) {
+          alert("Так тримати, є попадання, треба ще!")
+        } else {
+          alert("Нажаль мимо.")
+        }
+      }
+    </script>
+  </body>
+</html>

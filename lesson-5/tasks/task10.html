@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 10</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 10</h1>
+    <p class="text">Знайти суму всіх непарних чисел, що знаходяться між заданими користувачем числами.</p>
+    <script>
+      const firstUserNumber = parseInt(prompt("Введіть перше число:")),
+        secondUserNumber = parseInt(prompt("Введіть друге число:")),
+        maxNumber = firstUserNumber > secondUserNumber ? firstUserNumber : secondUserNumber,
+        minNumber = firstUserNumber < secondUserNumber ? firstUserNumber : secondUserNumber
+      let counter = minNumber,
+        totalSum = 0
+
+      while (counter < maxNumber) {
+        if (counter % 2 !== 0 && counter !== minNumber) totalSum += counter
+        counter++
+      }
+
+      document.write(`<div class="text-script">Сумма всіх непарних чисел, що знаходяться між заданими користувачем числами: ${totalSum}</div>`)
+    </script>
+  </body>
+</html>

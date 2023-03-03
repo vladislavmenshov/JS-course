@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Task 1</title>
+</head>
+<body>
+    <ul><li></li></ul>
+    <h1 class="title">Задача 1</h1>
+    <p class="text">Вивести з використанням циклів маркований список з випадковими числами (1-100). Кількість випадкових чисел вводиться користувачем.</p>
+
+    <script>
+
+        const userRandomNumbers = parseInt(prompt('Введіть кількість випадкових чисел:')),
+            minNumber = 1,
+            maxNumber = 100
+        let listResult = ''
+
+        for (let i = 1; i <= userRandomNumbers; i++) {
+            let randomNumber = Math.floor(Math.random() * maxNumber + minNumber)
+            listResult += `<li><p class="text-script">Випадкове число пункту №${i}: ${randomNumber}</p></li>`
+        }
+
+        document.write(`
+            <ul>
+                ${listResult}
+            </ul>
+        `)
+    </script>
+</body>
+</html>

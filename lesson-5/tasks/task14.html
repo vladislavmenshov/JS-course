@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 14</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 14</h1>
+    <p class="text">
+      Каса. Користувачу повідомляють суму, яку йому треба сплатити. Користувач поступово вводить суму грошей до тих пір, поки суми не буде достатньо для оплати товарів (кожного разу користувачу повідомляють, яку ще суму потрібно ввести).
+    </p>
+    <script>
+      const productPrice = 4999
+      let amountUser = 0,
+        userPaid = false,
+        restOfProductPrice = productPrice
+
+      while (amountUser < productPrice) {
+        if (!userPaid) {
+          alert(`Сумма до оплати ${productPrice} грн`)
+          userPaid = true
+        }
+
+        const userGaveMoney = parseFloat(prompt(`Введіть сумму грошей для сплати:`))
+        restOfProductPrice = (productPrice - amountUser).toFixed(2)
+
+        if (!isFinite(userGaveMoney)) {
+          alert("Некорректне значення, введіть вірну сумму.")
+          continue
+        } else if (userGaveMoney === 0 || userGaveMoney < 0) {
+          alert("Так не вийде, треба сплатити.")
+          continue
+        }
+
+        amountUser += userGaveMoney
+        restOfProductPrice = (productPrice - amountUser).toFixed(2)
+
+        alert(`Ваші ${userGaveMoney.toFixed(2)}. Залишилось ще ${restOfProductPrice <= 0 ? 0 : restOfProductPrice}`)
+
+        if (restOfProductPrice <= 0) {
+          alert(`Ваша решта ${Math.abs(restOfProductPrice)} грн. Дякую за покупку.`)
+        }
+      }
+    </script>
+  </body>
+</html>

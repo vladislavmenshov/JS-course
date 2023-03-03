@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Task 4</title>
+</head>
+<body>
+    <h1 class="title">Задача 4</h1>
+    <p class="text">Вивести таблицю з 3 рядків і 7 стовпців</p>
+
+    <script>
+        const quantityColumns = 7
+        const quantityRows = 3
+
+        document.write(`
+            <table class="text-script table">
+        `)
+
+        for (let i = 1; i <= quantityRows; i++) {
+            document.write(`<tr>`)
+            for (let j = 1; j <= quantityColumns; j++) {
+                document.write(`<td class="table" >${j}</td>`)
+            }
+            document.write('</tr>')
+        }
+
+        document.write(`
+            </table>
+        `)
+    </script>
+</body>
+</html>

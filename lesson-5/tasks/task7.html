@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 7</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 7</h1>
+    <p class="text">Вивести на екран N абзаців (N вводиться користувачем) за зразком.</p>
+    <script>
+      const quantityParagraph = parseInt(prompt("Введіть кількість абзаців:", 3))
+      let paragraphTemplate = ""
+
+      for (let i = 1; i <= quantityParagraph; i++) {
+        paragraphTemplate += `<p>Розділ 1, параграф ${i}</p>`
+      }
+
+      document.write(`
+        <div class="text-script">
+            <h1>Заголовок 1</h1>
+            <div>
+                ${paragraphTemplate}
+            </div>
+        </div>
+      `)
+    </script>
+  </body>
+</html>
