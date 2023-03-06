@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 3</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 3</h1>
+    <p class="text">Створити окремі функції, які для 4 чисел знаходять: 1 - суму; 2 - добуток; 3 - середнє арифметичне; 4 - мінімальне значення.</p>
+    <script>
+      function getSum(firstNumber, secondNumber, thirdNumber, fourthNumber) {
+        return firstNumber + secondNumber + thirdNumber + fourthNumber
+      }
+
+      function getMultiplication(firstNumber, secondNumber, thirdNumber, fourthNumber) {
+        return firstNumber * secondNumber * thirdNumber * fourthNumber
+      }
+
+      function getArithmeticalMean(firstNumber, secondNumber, thirdNumber, fourthNumber) {
+        return (firstNumber + secondNumber + thirdNumber + fourthNumber) / 4
+      }
+
+      function getMinValue(firstNumber, secondNumber, thirdNumber, fourthNumber) {
+        let minNum = firstNumber
+
+        if (secondNumber < minNum) minNum = num2
+        if (thirdNumber < minNum) minNum = num3
+        if (fourthNumber < minNum) minNum = num4
+
+        return minNum
+      }
+
+      const firstUserNumber = parseInt(prompt("Введіть перше число:"))
+      const secondtUserNumber = parseInt(prompt("Введіть друге число:"))
+      const thirdUserNumber = parseInt(prompt("Введіть трете число:"))
+      const fourthUserNumber = parseInt(prompt("Введіть четверте число:"))
+
+      document.write(`
+        <div class="text-script">
+            Результат сумми: ${getSum(firstUserNumber, secondtUserNumber, thirdUserNumber, fourthUserNumber)}<br>
+            Результат добутка: ${getMultiplication(firstUserNumber, secondtUserNumber, thirdUserNumber, fourthUserNumber)}<br>
+            Результат середнього арифметичного: ${getArithmeticalMean(firstUserNumber, secondtUserNumber, thirdUserNumber, fourthUserNumber)}<br>
+            Результат мінімального значення: ${getMinValue(firstUserNumber, secondtUserNumber, thirdUserNumber, fourthUserNumber)}<br>
+        </div>
+      `)
+    </script>
+  </body>
+</html>

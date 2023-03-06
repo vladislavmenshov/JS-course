@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 10</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 10</h1>
+    <p class="text">Дано покази температур (довільна кількість). Розробити функцію, яка дозволить знайти середнє значення для додатних показів температури.</p>
+    <script>
+      function getAverageValueOfPositiveNumbers() {
+        let counterOfPositiveNumber = 0,
+          sumOfPositiveNumber = 0
+        for (let i = 0; i < arguments.length; i++) {
+          if (arguments[i] > 0) {
+            sumOfPositiveNumber += arguments[i]
+            counterOfPositiveNumber++
+          }
+        }
+
+        return sumOfPositiveNumber / counterOfPositiveNumber
+      }
+
+      const averageValueOfPositiveNumbers = getAverageValueOfPositiveNumbers(-4, 8, -15, 16, -23, 42)
+      document.write(`
+      <div class='text-script'>
+        Показ температури: -4, 8, -15, 16, -23, 42</br>
+        Середнє значення для додатних показів температури: ${parseInt(averageValueOfPositiveNumbers)}
+      </div>`)
+    </script>
+  </body>
+</html>

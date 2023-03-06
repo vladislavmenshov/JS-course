@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 0</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 0</h1>
+    <p class="text">Створити функцію, яка за номером місяця повертає пору року, до якої відноситься цей місяць.</p>
+    <script>
+      function getTimeOfYear(month) {
+        let seasonName
+        switch (month) {
+          case 1:
+          case 2:
+          case 12:
+            seasonName = "Зима"
+            break
+          case 3:
+          case 4:
+          case 5:
+            seasonName = "Весна"
+            break
+          case 6:
+          case 7:
+          case 8:
+            seasonName = "Літо"
+            break
+          case 9:
+          case 10:
+          case 11:
+            seasonName = "Осінь"
+            break
+          default:
+            seasonName = "Сталася помилка"
+            break
+        }
+
+        return seasonName
+      }
+
+      const userNumberMonth = parseInt(prompt("Введіть номер місяця", 8))
+      document.write(`<div class="text-script">Результат: ${getTimeOfYear(userNumberMonth)}</div>`)
+    </script>
+  </body>
+</html>

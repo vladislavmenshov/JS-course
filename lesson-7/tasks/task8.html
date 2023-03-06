@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 8</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 8</h1>
+    <p class="text">Створити функцію, яка виводить банер. У функцію передаються: зображення, заголовок та посилання, куди переходимо при кліку на зображення, тег img повине знаходитись у середині тега a.</p>
+    <script>
+      const imageIndex = Math.floor(1 + Math.random() * 4)
+      const imgPath = `img/task7/${imageIndex}.png`
+
+      function showBanner(image, title, link) {
+        result = `
+          <div class='text-script'>
+            <h1>${title}</h1>
+            <a target="_blank" href="https://${link}"><img src="${image}" alt="Png"></a>
+          </div>
+        `
+
+        return result
+      }
+
+      const userTitle = prompt("Введіть заголовок для банера:")
+      const userLink = prompt("Введіть посилання для банера (перенаправлення по кліку на картинку банера):")
+
+      document.write(showBanner(imgPath, userTitle, userLink))
+    </script>
+  </body>
+</html>

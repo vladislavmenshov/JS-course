@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 7</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 7</h1>
+    <p class="text">Створити функцію, яка випадковим чином виводить на екран одне із 4 зображень (шляхи до зображень передаються у функцію).</p>
+    <script>
+      const imageIndex = Math.floor(1 + Math.random() * 4)
+      const imgPath = `<img src="img/task7/${imageIndex}.png" alt="Png">`
+
+      function showImage(index) {
+        image = document.write(`<div class='text-script'>${imgPath}</div>`)
+        return image
+      }
+
+      document.write(`${showImage(imgPath)}`)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 4</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 4</h1>
+    <p class="text">Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів: кількість парних, кількість додатних, кількість більших за 100.</p>
+    <script>
+      function getManyResults(firstNumber, secondNumber, thirdNumber) {
+        let evenNumbers = 0,
+          positiveNumbers = 0,
+          moreThan100 = 0
+
+        for (let i = 0; i < arguments.length; i++) {
+          if (arguments[i] % 2 === 0) {
+            evenNumbers++
+          }
+          if (arguments[i] > 0) {
+            positiveNumbers++
+          }
+          if (arguments[i] > 100) {
+            moreThan100++
+          }
+        }
+
+        const result = `
+          Кількість парних: ${evenNumbers}<br>
+          Кількість додатних: ${positiveNumbers}<br>
+          Кількість більших за 100: ${moreThan100}<br>
+        `
+
+        return result
+      }
+
+      const userFirstNumber = parseInt(prompt("Введіть перше число:"))
+      const userSecondNumber = parseInt(prompt("Введіть друге число:"))
+      const userThirdNumber = parseInt(prompt("Введіть трете число:"))
+      document.write(`<div class="text-script">${getManyResults(userFirstNumber, userSecondNumber, userThirdNumber)}</div>`)
+    </script>
+  </body>
+</html>

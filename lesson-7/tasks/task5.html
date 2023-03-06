@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 5</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 5</h1>
+    <p class="text">Створити окремі функції, які переводять: 1 - Сантиметри у дюйми; 2 - Кілограми у фунти; 3 - Кілометри у милі.</p>
+    <script>
+      function getInchOfCentimeters(centimeters) {
+        result = centimeters / 2.54
+        return result
+      }
+
+      function getPoundOfKilograms(kilograms) {
+        result = kilograms * 2.205
+        return result
+      }
+
+      function getMileOfKilometers(kilometers) {
+        result = kilometers / 1.609
+        return result
+      }
+
+      const userNumber = parseInt(prompt("Введіть число для конвертації його у дюйми, фунти та милі:"))
+      document.write(`
+      <div class="text-script">
+        Дюймів: ${getInchOfCentimeters(userNumber).toFixed(2)}<br>
+        Фунтів: ${getPoundOfKilograms(userNumber).toFixed(2)}<br>
+        Миль: ${getMileOfKilometers(userNumber).toFixed(2)}<br>
+      </div>`)
+    </script>
+  </body>
+</html>

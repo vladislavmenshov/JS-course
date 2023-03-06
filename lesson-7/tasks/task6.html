@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 6</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 6</h1>
+    <p class="text">Створити функцію, яка створює таблицю з вказаною кількістю рядків і стовпців (таблиця заповнюється заданим фіксованим повідомленням).</p>
+    <script>
+      function createTable(rows, columns, notification) {
+        let sheet = ""
+        for (let i = 0; i < rows; i++) {
+          let sheetColumns = ""
+          for (let j = 0; j < columns; j++) {
+            sheetColumns += `<td>${notification}</td>`
+          }
+          sheet += `<tr>${sheetColumns}</tr>`
+        }
+
+        return `<table class="table"><tbody>${sheet}</tbody></table>`
+      }
+
+      const userRowsNumber = parseInt(prompt("Введіть кількість рядків:"))
+      const userColumnsNumber = parseInt(prompt("Введіть кількість колонок:"))
+      const userMessage = prompt("Введіть повідомлення:")
+      const table = createTable(userRowsNumber, userColumnsNumber, userMessage)
+
+      document.write(`<div class="div-flex">${table}</div>`)
+    </script>
+  </body>
+</html>
