@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 9</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 9</h1>
+    <p class="text">
+      Морський бій. Користувач вводить кількість клітинок одновимірного масиву та кількість одиночних кораблів. Комп’ютер довільно розміщує ці одиночні кораблі у масиві по один у клітинці, якщо у клітинці 0, то клітинка пуста, якщо 1 – то це означає,
+      що там є корабель. Користувач вводить номер клітинки, куди стріляє. Гра продовжується до тих пір, поки не будуть потоплені усі кораблі.
+    </p>
+    <script>
+      const userQuantityGameFields = parseInt(prompt("Введіть кількість клітинок для ігрового поля:"))
+      let userQuantityShips = parseInt(prompt("Введіть кількість кораблів для ігрового поля:"))
+
+      // ф-ція котра заповнює масив кораблями у рандомному випадку
+      function fillShipsInFields(ships, fields) {
+        let arrShipsInFields = new Array(userQuantityGameFields).fill(0)
+        for (let i = 0; i < ships; i++) {
+          let randomPositionShip
+          do {
+            randomPositionShip = Math.floor(Math.random() * fields)
+          } while (arrShipsInFields[randomPositionShip] === 1)
+          arrShipsInFields[randomPositionShip] = 1
+        }
+        return arrShipsInFields
+      }
+
+      function seaBattleGame(battlefield) {
+        let shotsCounter = 0
+        do {
+          const fieldNumberWhereShot = parseInt(prompt(`Введіть номер клітинки для пострілу (від 1 до ${userQuantityGameFields}):`))
+          if (battlefield[fieldNumberWhereShot - 1] === 1) {
+            alert('Попадання! "Руський" корабль йде самі знаєте куди. Стріляйте ще, кораблі на полі!')
+            battlefield[fieldNumberWhereShot - 1] = 0
+            userQuantityShips--
+            shotsCounter++
+          } else alert("Промах!")
+        } while (userQuantityShips)
+        let playerNotification = `Вітаю! Ви потопили всі "расійські" кораблі.`
+        return [shotsCounter, playerNotification]
+      }
+
+      const arrayBattlefield = fillShipsInFields(userQuantityShips, userQuantityGameFields)
+      const resultOfGame = seaBattleGame(arrayBattlefield)
+
+      document.write(`
+       <div class="text-script">
+        Кількість пострілів: ${resultOfGame[0]} <br>
+        ${resultOfGame[1]}
+      </div>`)
+    </script>
+  </body>
+</html>

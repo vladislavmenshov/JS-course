@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 4</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 4</h1>
+    <p class="text">Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які : 1 -починаються на букву «А»; 2 - перша і остання літери співпадають; 3 - складаються з більше ніш 5 символів.</p>
+    <script>
+      const carNumbers = ["AA3675KR", "KA6369AK", "AP1796KT", "AP1855RT", "AA5577AA", "CB1574DA", "KB7741TC", "0051", "AS55", "5SQ5"]
+
+      function getNumbersStartWithLetter(numbers, letter) {
+        let counterNumbersStartWithLetter = 0
+        for (let i = 0; i < numbers.length; i++) {
+          if (numbers[i][0] === letter) {
+            counterNumbersStartWithLetter++
+          }
+        }
+        return counterNumbersStartWithLetter
+      }
+
+      function getSameFirstAndLastLetter(numbers) {
+        let counterSameNumbers = 0
+        for (let i = 0; i < numbers.length; i++) {
+          const firstLetter = numbers[i][0]
+          const lastLetter = numbers[i][numbers[i].length - 1]
+          if (firstLetter === lastLetter) counterSameNumbers++
+        }
+        return counterSameNumbers
+      }
+
+      function getNumbersMoreFiveSymbols(numbers) {
+        let counterMoreFiveSymbols = 0
+        for (let num = 0; num < numbers.length; num++) {
+          if (numbers[num].length > 5) counterMoreFiveSymbols++
+        }
+        return counterMoreFiveSymbols
+      }
+
+      document.write(`
+      <div class="text-script">
+        1) Кількість номерів, які починаються на букву «А»: ${getNumbersStartWithLetter(carNumbers, "A")}<br>
+        2) Кількість номерів, перша і остання літери співпадають: ${getSameFirstAndLastLetter(carNumbers)}<br>
+        3) Кількість номерів, котрі складаються з більше ніш 5 символів: ${getNumbersMoreFiveSymbols(carNumbers)}<br>
+      </div>`)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 8</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 8</h1>
+    <p class="text">
+      Дано одновимірний масив, у якому зберігається певна виграшна сума (елементи заповнюються випадковим чином значеннями від -500 до 500). Надаючи користувачу можливість вибирати номери елементів (поки він не відмовиться). Знаходити сумарний
+      виграш.
+    </p>
+    <script>
+      const userQuantityElements = parseInt(prompt("Введіть кількість елементів для гри (елемент може давати грошовий виграш від -500 до 500 грн):", 7))
+
+      // ф-ція яка зберігає масив виграшів
+      function getArrWithRandomPrizeSum(quantityElements) {
+        const minSumPrize = -500
+        const maxSumPrize = 500
+        let arrWithRandomPrizeSum = []
+        for (let i = 0; i < quantityElements; i++) {
+          const randomSum = Math.floor(minSumPrize + Math.random() * (maxSumPrize - minSumPrize + 1))
+          arrWithRandomPrizeSum.push(randomSum)
+        }
+        return arrWithRandomPrizeSum
+      }
+
+      // ф-ція яка зберігає масив номерів елементів котрі ввів юзер
+      function getUserNumbersElements(quantityElements) {
+        let arrUserNumbersElements = []
+        for (let i = 0; i < quantityElements; i++) {
+          const userNumberElement = parseInt(prompt(`Введіть номер від 1 до ${userQuantityElements}. Якщо бажаєте зупинитись та забрати виграш натисніть "Відміна (Cancel)":`))
+          if (isNaN(userNumberElement)) {
+            break
+          }
+          arrUserNumbersElements.push(userNumberElement)
+        }
+        return arrUserNumbersElements
+      }
+
+      // ф-ція яка знаходить сумарний результат
+      function getTotalPrizeSum(userElements, arrRandomPrizes) {
+        let totalPrizeSum = 0
+        for (let i = 0; i < userElements.length; i++) {
+          totalPrizeSum += arrRandomPrizes[i]
+        }
+        return totalPrizeSum
+      }
+
+      const arrWithRandomPrizes = getArrWithRandomPrizeSum(userQuantityElements)
+      const userElementsForPrize = getUserNumbersElements(userQuantityElements)
+      const totalPrizeSum = getTotalPrizeSum(userElementsForPrize, arrWithRandomPrizes)
+
+      document.write(`
+      <div class="text-script">
+        Ваш виграш: ${totalPrizeSum}
+      </div>`)
+    </script>
+  </body>
+</html>

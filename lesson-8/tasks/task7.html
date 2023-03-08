@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 7</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 7</h1>
+    <p class="text">
+      Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за: 1 - за весь рік; 2 - у першій половині року; 3 -у другій половині року; 4 - за літо; 5 - за ІІ квартал; 6 - за парні місяці (з парними номерами); 7 - за місяці, які
+      є початковими у сезоні (весна, літо, осінь, зима).
+    </p>
+    <script>
+      const billsForTheYear = [1356, 12456, 5687, 1203, 974, 985, 874, 1485, 1744, 11203, 506, 702]
+
+      function getAmountSumOfPeriod(data, startMonthNumber, endMonthNumber) {
+        let totalSum = 0
+        for (let month = startMonthNumber; month <= endMonthNumber; month++) {
+          totalSum += data[month - 1]
+        }
+        return totalSum
+      }
+
+      function getSumOfEvenMonths(data) {
+        let totalSumOfEvenMonth = 0
+        for (let month = 0; month < data.length; month++) {
+          if ((month + 1) % 2 === 0) {
+            totalSumOfEvenMonth += data[month]
+          }
+        }
+        return totalSumOfEvenMonth
+      }
+
+      function getSumOfStartSeasonMonths(data) {
+        let totalSumOfStartSeasonMonths = 0
+        for (let month = 0; month < data.length; month++) {
+          if ((month + 1) % 3 === 0) {
+            totalSumOfStartSeasonMonths += data[month]
+          }
+        }
+        return totalSumOfStartSeasonMonths
+      }
+
+      document.write(`
+      <div class="text-script">
+        Платіжки за рік: ${billsForTheYear}. <br>
+        1) За весь рік: ${getAmountSumOfPeriod(billsForTheYear, 1, 12)} грн. <br>
+        2) За першу половину року: ${getAmountSumOfPeriod(billsForTheYear, 1, 6)} грн. <br>
+        3) За другу половину року: ${getAmountSumOfPeriod(billsForTheYear, 7, 12)} грн. <br>
+        4) За літо: ${getAmountSumOfPeriod(billsForTheYear, 6, 8)} грн. <br>
+        5) За ІІ квартал: ${getAmountSumOfPeriod(billsForTheYear, 4, 6)} грн. <br>
+        6) За парні місяці (з парними номерами): ${getSumOfEvenMonths(billsForTheYear)} грн. <br>
+        7) За місяці, які є початковими у сезоні (весна, літо, осінь, зима): ${getSumOfStartSeasonMonths(billsForTheYear)} грн. <br>
+      </div>`)
+    </script>
+  </body>
+</html>

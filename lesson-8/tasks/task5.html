@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 5</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 5</h1>
+    <p class="text">Дано послідовність оцінок учня. Підрахувати кількість: 1 - двійок; 2 - кількість хороших оцінок (добре, відмінно); 3 - кількість оцінок, які нижче середнього.</p>
+    <script>
+      const userQuantityGrade = parseInt(prompt("Введіть кількість оцінок учня:", 7))
+
+      function getRandomGrades(grades) {
+        let gradesArr = []
+
+        for (let i = 0; i < grades; i++) {
+          let randomGrade = 0 + Math.floor(Math.random() * 12)
+          gradesArr.push(randomGrade)
+        }
+        return gradesArr
+      }
+
+      function getNumbersTwos(grades) {
+        let deucesCounter = 0
+        for (let i = 0; i < grades.length; i++) {
+          if (grades[i] === 2) deucesCounter++
+        }
+        return deucesCounter
+      }
+
+      function getWellGrades(grades) {
+        let goodGradesCounter = 0
+        for (let i = 0; i < grades.length; i++) {
+          if (grades[i] >= 7) goodGradesCounter++
+        }
+        return goodGradesCounter
+      }
+
+      function getGradesBelowAverage(grades) {
+        let gradesBelowAverageCounter = 0
+        for (let i = 0; i < grades.length; i++) {
+          if (grades[i] <= 3) gradesBelowAverageCounter++
+        }
+        return gradesBelowAverageCounter
+      }
+
+      const listOfGrades = getRandomGrades(userQuantityGrade)
+
+      document.write(`
+      <div class="text-script">
+        Оцінки: ${listOfGrades}<br>
+        1) Кількість двійок: ${getNumbersTwos(listOfGrades)}<br>
+        2) Кількість хороших оцінок (добре, відмінно)(від 7 включно і вище): ${getWellGrades(listOfGrades)}<br>
+        3) Кількість оцінок, які нижче середнього (нижче 3): ${getGradesBelowAverage(listOfGrades)}
+      </div>`)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 2</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 2</h1>
+    <p class="text">
+      Дано масив, який зберігає кількість відвідувачів магазину протягом тижня. Вивести на екран: 1 - номери днів, протягом яких кількість відвідувачів була меншою за 20; 2 - номер дня, коли кількість відвідувачів була мінімальною; 3 - загальну
+      кількість клієнтів у робочі дні та окремо загальну кількість днів навихідних.
+    </p>
+    <script>
+      // масив, який зберігає кількість відвідувачів магазину протягом тижня
+      function arrayVisitorsOfWeek() {
+        const daysInWeek = 7
+        const maxVisitors = 50
+        let arr = []
+        for (let i = 0; i < daysInWeek; i++) {
+          const visitors = 1 + Math.floor(Math.random() * maxVisitors)
+          arr.push(visitors)
+        }
+
+        return arr
+      }
+
+      // ф-ція яка вираховує номери днів, протягом яких кількість відвідувачів була меншою за 20
+      function getDaysWhenClientsLessThan20(clients) {
+        let arrayOfNumberDay = []
+        for (let day = 0; day < clients.length; day++) {
+          if (clients[day] < 20) arrayOfNumberDay.push(day + 1)
+        }
+
+        return arrayOfNumberDay
+      }
+
+      // ф-ція яка визначає номер дня, коли кількість відвідувачів була мінімальною
+      function getDayWithMinClients(clients) {
+        let minVisitors = +Infinity
+        let minVisitorsDay = 1
+        for (let i = 0; i < clients.length; i++) {
+          if (clients[i] < minVisitors) {
+            minVisitors = clients[i]
+            minVisitorsDay = i + 1
+          }
+        }
+
+        return minVisitorsDay
+      }
+
+      function getWorkingDaysVisitors(clients) {
+        let workingDayVisitors = 0
+        for (let i = 0; i < clients.length; i++) {
+          if (i < 5) workingDayVisitors += clients[i]
+        }
+
+        return workingDayVisitors
+      }
+
+      function getWeekendDaysVisitors(clients) {
+        let weekendDayVisitors = 0
+        for (let i = 0; i < clients.length; i++) {
+          if (i < 5) continue
+          else weekendDayVisitors += clients[i]
+        }
+
+        return weekendDayVisitors
+      }
+
+      const clientsList = arrayVisitorsOfWeek()
+
+      document.write(`
+      <div class="text-script">
+        Кількість клієнтів за неділю по дням: ${clientsList}<br>
+        1) Номери днів, протягом яких кількість відвідувачів була меншою за 20: ${getDaysWhenClientsLessThan20(clientsList)}<br>
+        2) Номер дня, коли кількість відвідувачів була мінімальною: ${getDayWithMinClients(clientsList)}<br>
+        3) Загальна кількість клієнтів у робочі дні та окремо у вихідні дні: у робочі - ${getWorkingDaysVisitors(clientsList)}, у вихідні - ${getWeekendDaysVisitors(clientsList)}
+      </div>`)
+    </script>
+  </body>
+</html>

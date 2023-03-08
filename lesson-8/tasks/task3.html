@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 3</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 3</h1>
+    <p class="text">Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я «Іван».</p>
+    <script>
+      const studentNames = ["Ivan", "Alex", "Vlad", "Olga", "Oksana", "Sofia", "Pavlo", "Edik", "Ivan", "Ivan", "Vlad", "Sasha", "Roman"]
+
+      function getQuantityName(data, name) {
+        let counterName = 0
+        for (let i = 0; i < data.length; i++) {
+          const student = data[i]
+          if (student === name) counterName++
+        }
+        return counterName
+      }
+
+      document.write(`<div class="text-script">Ім’я «Іван» зустрічається: ${getQuantityName(studentNames, "Ivan")} раз.</div>`)
+    </script>
+  </body>
+</html>
