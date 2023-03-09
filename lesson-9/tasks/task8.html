@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 8</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 8</h1>
+    <p class="text">Дано масив номерів авто. Сформувати новий масив тих, які починаються на «А».</p>
+    <script>
+      const carNumbers = ["AA3675KR", "KA6369AK", "AP1796KT", "AP1855RT", "AA5577AA", "CB1574DA", "KB7741TC", "0051", "AS55", "5SQ5"]
+
+      const arrStartWithLetterA = carNumbers.filter((number) => number[0] === "A")
+
+      document.write(`
+      <div class="text-script">
+        Массив номерів: ${carNumbers.join(", ")} <br>
+        Номери які починаються на А: ${arrStartWithLetterA.join(", ")}
+      </div>`)
+    </script>
+  </body>
+</html>

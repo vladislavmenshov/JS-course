@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 2</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 2</h1>
+    <p class="text">Користувач вводить кількість елементів. Створити масив, у якому перша половина заповнена 1-цями, а друга заповнена 7-ками.</p>
+    <script>
+      const userQuantityElements = parseInt(prompt("Введіть кількість єлементів:", 7))
+
+      function createArrayFillElements(elements) {
+        return new Array(elements).fill(0)
+      }
+
+      function getHalfArrayWithSevens(elements) {
+        let arrFillElements = createArrayFillElements(elements)
+        let halfQuantityOfElements = elements / 2
+        return arrFillElements.fill(7, halfQuantityOfElements)
+      }
+
+      document.write(`<div class="text-script">${getHalfArrayWithSevens(userQuantityElements)}</div>`)
+    </script>
+  </body>
+</html>

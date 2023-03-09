@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 7</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 7</h1>
+    <p class="text">Дано масив цін. Змінити цей масив так, що на ціни товарів, які більші за 1000 грн. дати 30% знижки.</p>
+    <script>
+      const userQuantityPrices = parseInt(prompt("Введіть кількість цін з котрих буде складатися масив:", 10))
+
+      function getArrWithRandomNumbers(quantity, maxValue, minValue) {
+        let arr = []
+        for (let i = 0; i < quantity; i++) {
+          const randomNumber = Math.floor(minValue + Math.random() * (maxValue - minValue + 1))
+          arr.push(randomNumber)
+        }
+        return arr
+      }
+
+      function getDiscount(arrPrices) {
+        const arrWithDiscount = []
+        const calculateDiscount = (discount, itemPrice) => (itemPrice * discount) / 100
+        const resultArr = arrWithRandomPrices.map((price) => {
+          if (price > 1000) price -= calculateDiscount(30, price)
+          return arrWithDiscount.push(price)
+        })
+
+        return arrWithDiscount.join(", ")
+      }
+
+      const arrWithRandomPrices = getArrWithRandomNumbers(userQuantityPrices, 1500, 150)
+
+      document.write(`
+      <div class="text-script">
+        Массив елементів: ${arrWithRandomPrices.join(", ")} <br>
+        Ціни товарів, які більші за 1000 грн даємо 30% знижки: ${getDiscount(arrWithRandomPrices)}
+      </div>`)
+    </script>
+  </body>
+</html>

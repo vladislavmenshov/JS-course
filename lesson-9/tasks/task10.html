@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 10</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 10</h1>
+    <p class="text">Дано масив цін у грн. Податок складає 20%. Сформувати масив, який буде містити величину сплаченого податку у грн.</p>
+    <script>
+      const userQuantityPrices = parseInt(prompt("Введіть кількість цін з котрих буде складатися масив:", 10))
+
+      function getRandomNumb(minValue, maxValue) {
+        return Math.floor(minValue + Math.random() * (maxValue - minValue + 1))
+      }
+
+      const pricesArray = new Array(userQuantityPrices).fill(0).map((price) => (price = getRandomNumb(150, 1150)))
+
+      const calcTaxFromPrice = (price, tax) => (price * tax) / 100
+
+      const arrTaxFromPrices = pricesArray.map((price) => (price = calcTaxFromPrice(price, 20)))
+
+      let totalSumOfTaxes = arrTaxFromPrices.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+
+      document.write(`
+      <div class="text-script">
+        Массив цін: ${pricesArray.join(", ")} <br>
+        Масив, який містить величину сплаченого податку у грн: ${arrTaxFromPrices.join(", ")}}<br>
+        Сумма податків: ${totalSumOfTaxes}
+      </div>`)
+    </script>
+  </body>
+</html>
