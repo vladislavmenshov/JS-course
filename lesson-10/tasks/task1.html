@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 1</h1>
+    <p class="text">
+      Задача. Дано історію цін на цінні папери за деякий період (згенерувати від 1 до 10000):<br />
+      1. Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.<br />
+      2. Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.<br />
+      3. Сформувати список з тих цін, які більші за попереднє значення.<br />
+      4. Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального.<br />
+      5. Підрахувати кількість змін цін.<br />
+      6. Визначити, чи є ціна, що менше 1000.<br />
+      7. Визначати, чи усі ціни більше за 1000.<br />
+      8. Підрахувати кількість цін, що більше за 1000.<br />
+      9. Підрахувати суму цін, що більше за 1000.<br />
+      10. Знайти першу ціну, що більше за 1000.<br />
+      11. Знайти індекс першої ціни, що більше за 1000.<br />
+      12. Знайти останню ціну, що більше за 1000.<br />
+      13. Знайти індекс останньої ціни, що більше за 1000.
+    </p>
+    <script>
+      // Формуємо масив данних
+
+      const userQuantityElements = parseInt(prompt("Введіть кількість елементів в масиві:", 15))
+
+      function getRandomNumber(minValue, maxValue) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+
+      const arrRandomValues = new Array(userQuantityElements).fill(0).map((numb) => getRandomNumber(1, 10000))
+
+      // 1. Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+      const valuesMoreThan1000 = arrRandomValues.filter((value) => value > 1000)
+
+      // 2. Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.
+      const indicesMoreThan1000 = arrRandomValues.reduce((prevValue, value, index) => (value > 1000 ? [...prevValue, index] : prevValue), [])
+
+      // 3. Сформувати список з тих цін, які більші за попереднє значення.
+      const valuesMoreThanPreviousValue = arrRandomValues.reduce((prevValue, value, index, arr) => (arr[index - 1] < value ? [...prevValue, value] : prevValue), [])
+
+      // 4. Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального.
+      const maxPrice = arrRandomValues.reduce((maxPrice, price, index, arr) => (price > maxPrice ? price : maxPrice))
+      const arrPricesInPercentOfMaxPrice = arrRandomValues.map((price) => Math.round((price / maxPrice) * 100))
+
+      // 5. Підрахувати кількість змін цін.
+      const quantityPriceChanges = arrRandomValues.reduce((prevPrice, price) => (price !== prevPrice ? prevPrice + 1 : prevPrice), 0)
+
+      // 6. Визначити, чи є ціна, що менше 1000.
+      const isPriceLessThan1000 = arrRandomValues.some((price) => price < 1000)
+
+      // 7. Визначати, чи усі ціни більше за 1000.
+      const isAllPricesMoreThan1000 = arrRandomValues.every((price) => price > 1000)
+
+      // 8. Підрахувати кількість цін, що більше за 1000.
+      const countQuantityPricesMoreThan1000 = arrRandomValues.reduce((prevPrice, price) => (price > 1000 ? prevPrice + 1 : prevPrice), 0)
+
+      // 9. Підрахувати суму цін, що більше за 1000.
+      const sumOfPricesMoreThan1000 = arrRandomValues.reduce((prevPrice, price) => (price > 1000 ? prevPrice + price : prevPrice), 0)
+
+      // 10. Знайти першу ціну, що більше за 1000.
+      const findFirstPriceMoreThan1000 = arrRandomValues.find((price) => price > 1000)
+
+      // 11. Знайти індекс першої ціни, що більше за 1000.
+      const findIndexFirstPriceMoreThan1000 = arrRandomValues.findIndex((price) => price > 1000)
+
+      // 12. Знайти останню ціну, що більше за 1000.
+      const findLastPriceMoreThan1000 = arrRandomValues.findLast((price) => price > 1000)
+
+      // 13. Знайти індекс останньої ціни, що більше за 1000.
+      const findIndexLastPriceMoreThan1000 = arrRandomValues.findLastIndex((price) => price > 1000)
+
+      document.write(`<div class="text-script">
+          Массив цін: ${arrRandomValues.join(", ")}.<br>
+          <br>1. Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн:<br> ${valuesMoreThan1000.join(", ")}.<br>
+          <br>2. Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн:<br> ${indicesMoreThan1000.join(", ")}.<br>
+          <br>3. Сформувати список з тих цін, які більші за попереднє значення:<br> ${valuesMoreThanPreviousValue.join(", ")}.<br>
+          <br>4. Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального (${maxPrice}):<br> ${arrPricesInPercentOfMaxPrice.join(", ")}.<br>
+          <br>5. Підрахувати кількість змін цін:<br> ${quantityPriceChanges}.<br>
+          <br>6. Визначити, чи є ціна, що менше 1000 (true or false):<br> ${isPriceLessThan1000}.<br>
+          <br>7. Визначати, чи усі ціни більше за 1000 (true or false):<br> ${isAllPricesMoreThan1000}.<br>
+          <br>8. Підрахувати кількість цін, що більше за 1000:<br> ${countQuantityPricesMoreThan1000}.<br>
+          <br>9. Підрахувати суму цін, що більше за 1000:<br> ${sumOfPricesMoreThan1000}.<br>
+          <br>10. Знайти першу ціну, що більше за 1000:<br> ${findFirstPriceMoreThan1000}.<br>
+          <br>11. Знайти індекс першої ціни, що більше за 1000:<br> ${findIndexFirstPriceMoreThan1000}.<br>
+          <br>12. Знайти останню ціну, що більше за 1000:<br> ${findLastPriceMoreThan1000}.<br>
+          <br>13. Знайти індекс останньої ціни, що більше за 1000:<br> ${findIndexLastPriceMoreThan1000}.<br>
+        </div>`)
+    </script>
+  </body>
+</html>
