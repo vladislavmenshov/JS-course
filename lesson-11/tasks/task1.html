@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 1</h1>
+    <p class="text">
+      Знайти суми елементів у вказаних областях:<br />
+      1. (лівий верхній кут);<br />
+      2. (правий верхній кут);<br />
+      3. (лівий нижній кут);<br />
+      4. (правий нижній кут);<br />
+      5. Суму парних рядків;<br />
+      6. Суму непарних стовпців;<br />
+      7. У парних рядках – непарні стовпці, у непарних – парні.
+    </p>
+    <script>
+      // Ф-ція генерування рандомного числа
+      function getRandomNumber(minValue, maxValue) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+
+      // Ф-ція генерування одновимірного масиву (одного рядка)
+      function generateRandomArray(arrayLength, minValue, maxValue) {
+        const arr = []
+        for (let i = 0; i < arrayLength; i++) {
+          const randomNum = getRandomNumber(minValue, maxValue)
+          arr.push(randomNum)
+        }
+        return arr
+      }
+
+      // Ф-ція генерування двовимірного масиву
+      function generateArrayTable(rowsLength, arrayLength, minValue, maxValue) {
+        const table = []
+        for (let i = 0; i < rowsLength; i++) {
+          const randomRow = generateRandomArray(arrayLength, minValue, maxValue)
+          table.push(randomRow)
+        }
+        return table
+      }
+
+      const array = generateArrayTable(4, 4, 1, 50)
+
+      // 1. Знайти суми елементів у вказаних областях (лівий верхній кут).
+      let sumTask1 = 0
+      for (let i = 0; i < Math.floor(array.length / 2); i++) {
+        for (let k = 0; k < Math.floor(array[i].length / 2); k++) {
+          sumTask1 += array[i][k]
+        }
+      }
+
+      // 2. Знайти суми елементів у вказаних областях (правий верхній кут).
+      let sumTask2 = 0
+      for (let i = 0; i < Math.floor(array.length / 2); i++) {
+        for (let k = Math.floor(array[i].length / 2); k < Math.floor(array[i].length); k++) {
+          sumTask2 += array[i][k]
+        }
+      }
+
+      // 3. Знайти суми елементів у вказаних областях (лівий нижній кут).
+      let sumTask3 = 0
+      for (let i = Math.floor(array.length / 2); i < array.length; i++) {
+        for (let k = 0; k < Math.floor(array[i].length / 2); k++) {
+          sumTask3 += array[i][k]
+        }
+      }
+
+      // 4. Знайти суми елементів у вказаних областях (правий нижній кут).
+      let sumTask4 = 0
+      for (let i = Math.floor(array.length / 2); i < array.length; i++) {
+        for (let k = Math.floor(array[i].length / 2); k < Math.floor(array[i].length); k++) {
+          sumTask4 += array[i][k]
+        }
+      }
+
+      // 5. Суму парних рядків.
+      let sumTask5 = 0
+      for (let i = 0; i < array.length; i++) {
+        for (let k = 0; k < array[i].length; k++) {
+          if (i % 2 === 0) {
+            sumTask5 += array[i][k]
+          }
+        }
+      }
+
+      // 6. Суму непарних стовпців.
+      let sumTask6 = 0
+      for (let i = 0; i < array.length; i++) {
+        for (let k = 1; k < array[i].length; k += 2) {
+          sumTask6 += array[i][k]
+        }
+      }
+
+      // 7. У парних рядках – непарні стовпці, у непарних – парні.
+      let sumTask7 = 0
+      for (let i = 0; i < array.length; i++) {
+        if (i % 2 === 0) {
+          for (let k = 1; k < array[i].length; k += 2) {
+            sumTask7 += array[i][k]
+          }
+        } else {
+          for (let j = 0; j < array[i].length; j += 2) {
+            sumTask7 += array[i][j]
+          }
+        }
+      }
+
+      document.write(`<div class="text-script">
+      1. ${sumTask1};<br />
+      2. ${sumTask2};<br />
+      3. ${sumTask3};<br />
+      4. ${sumTask4};<br />
+      5. ${sumTask5};<br />
+      6. ${sumTask6};<br />
+      7. ${sumTask7}.
+      </div>`)
+    </script>
+  </body>
+</html>

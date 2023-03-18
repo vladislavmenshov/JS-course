@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 3</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 3</h1>
+    <p class="text">Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів. Користувач стріляє вказуючи координати. Гра продовжується поки не потоплено усі кораблі або у користувача не закінчаться снаряди.</p>
+    <script>
+      const numberOfRockets = parseInt(prompt("Введіть кількість снарядів для гри:", 3))
+
+      // Ф-ція генерування масиву заповненого 0
+      function createGameField(rows, columns) {
+        let gameFieldArr = []
+        for (let i = 0; i < rows; i++) {
+          let fillColumnsArr = new Array(columns).fill(0)
+          gameFieldArr.push(fillColumnsArr)
+        }
+        return gameFieldArr
+      }
+
+      // Ф-ція заповнення масиву короблями
+      function fillArrWithShips(field, ships) {
+        for (let i = 0; i < ships; i++) {
+          let randomPositionRow, randomPositionColumn
+          do {
+            randomPositionRow = Math.floor(Math.random() * field.length)
+            randomPositionColumn = Math.floor(Math.random() * field.length)
+          } while (field[randomPositionRow][randomPositionColumn] === 1)
+
+          field[randomPositionRow][randomPositionColumn] = 1
+        }
+        return field
+      }
+
+      // Ф-ція гри
+      function seaBattleGame(battlefield, numberRockets, ships) {
+        let hitCounter = 0
+        let playerNotification = ""
+
+        do {
+          const fieldNumberWhereShotAxisX = parseInt(prompt(`Введіть номер клітинки для пострілу по осі Х (від 1 до 6):`))
+          const fieldNumberWhereShotAxisY = parseInt(prompt(`Введіть номер клітинки для пострілу по осі Y (від 1 до 6):`))
+          if (battlefield[fieldNumberWhereShotAxisX - 1][fieldNumberWhereShotAxisY - 1] === 1) {
+            alert('Попадання! "Руський" корабль йде самі знаєте куди. Гарна робота!')
+            battlefield[fieldNumberWhereShotAxisX - 1][fieldNumberWhereShotAxisY - 1] = 0
+            numberRockets--
+            ships--
+            hitCounter++
+          } else {
+            alert("Промах!")
+            numberRockets--
+          }
+        } while (numberRockets)
+
+        if (ships === 0) {
+          playerNotification = 'Вітаю! Ви потопили всі "расійські" кораблі.'
+        } else {
+          playerNotification = `Нажаль ракети закінчились. Кількість кораблів яка залишилась на полі: ${ships}.`
+        }
+        return [hitCounter, playerNotification]
+      }
+
+      const gameFieldArr = createGameField(6, 6, 5)
+      const gameFieldWithShips = fillArrWithShips(gameFieldArr, 5)
+      const gameResult = seaBattleGame(gameFieldWithShips, numberOfRockets, 5)
+
+      document.write(`
+       <div class="text-script">
+        Кількість потоплених кораблів: ${gameResult[0]}. <br>
+        ${gameResult[1]}
+      </div>`)
+    </script>
+  </body>
+</html>

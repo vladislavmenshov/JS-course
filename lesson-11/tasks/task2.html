@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 2</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 2</h1>
+    <p class="text">
+      Дано інформацію про прибуток К магазинів протягом тижня. Знайти:<br />
+      1. загальний прибуток кожного масиву за тиждень;<br />
+      2. загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);<br />
+      3. загальний прибуток за робочі дні;<br />
+      4. загальний прибуток за вихідні дні;<br />
+      5. максимальний прибуток за середу;<br />
+      6. сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200;<br />
+      7. відсортувати кожен тиждень за зростанням; <br />
+      8. відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків; <br />
+      9. упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти раніше).
+    </p>
+    <script>
+      const quantityStores = parseInt(prompt("Введіть кількість магазинів:", 5))
+
+      const daysInWeek = 7
+
+      // Ф-ція генерування рандомного числа
+      function getRandomNumber(minValue, maxValue) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+
+      // Ф-ція генерування одновимірного масиву (одного рядка)
+      function generateRandomArray(arrayLength, minValue, maxValue) {
+        const arr = []
+        for (let i = 0; i < arrayLength; i++) {
+          const randomNum = getRandomNumber(minValue, maxValue)
+          arr.push(randomNum)
+        }
+        return arr
+      }
+
+      // Ф-ція генерування двовимірного масиву
+      function generateArrayTable(rowsLength, arrayLength, minValue, maxValue) {
+        const table = []
+        for (let i = 0; i < rowsLength; i++) {
+          const randomRow = generateRandomArray(arrayLength, minValue, maxValue)
+          table.push(randomRow)
+        }
+        return table
+      }
+
+      const array = generateArrayTable(quantityStores, daysInWeek, 100, 500)
+      console.log("Початковий масив:")
+      console.log(array)
+
+      // 1. загальний прибуток кожного масиву за тиждень;
+      function getStoresIncomePerWeek(storesWithProfit) {
+        let totalIncomeEachStore = []
+        for (let i = 0; i < storesWithProfit.length; i++) {
+          let sumPerWeek = storesWithProfit[i].reduce((prevSum, dayIncome) => prevSum + dayIncome)
+          totalIncomeEachStore.push(sumPerWeek)
+        }
+        return totalIncomeEachStore
+      }
+
+      const storesIncomePerWeek = getStoresIncomePerWeek(array)
+      console.log("1. загальний прибуток кожного масиву за тиждень:")
+      console.log(storesIncomePerWeek)
+
+      // 2. загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);
+      function getTotalProfitPerEachDay(storesWithProfit, quantityDays) {
+        let totaProfitPerEachDay = []
+        for (let i = 0; i < quantityDays; i++) {
+          let totalSumPerDay = 0
+          for (let k = 0; k < storesWithProfit.length; k++) {
+            totalSumPerDay += storesWithProfit[k][i]
+          }
+          totaProfitPerEachDay.push(totalSumPerDay)
+        }
+        return totaProfitPerEachDay
+      }
+
+      const storesIncomePerEachDay = getTotalProfitPerEachDay(array, daysInWeek)
+      console.log("2. загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.):")
+      console.log(storesIncomePerEachDay)
+
+      // 3. загальний прибуток за робочі дні;
+      // 4. загальний прибуток за вихідні дні;
+      function getTotalIncomeStorePerPeriod(storesProfits, startDay, endDay) {
+        let totalSumPerPeriod = 0
+        for (let i = 0; i < storesProfits.length; i++) {
+          for (let k = startDay - 1; k < endDay; k++) {
+            totalSumPerPeriod += storesProfits[i][k]
+          }
+        }
+        return totalSumPerPeriod
+      }
+
+      const workDaysIncome = getTotalIncomeStorePerPeriod(array, 1, 5)
+      const weekendDaysIncome = getTotalIncomeStorePerPeriod(array, 6, 7)
+      console.log("3. загальний прибуток за робочі дні:")
+      console.log(workDaysIncome)
+      console.log("4. загальний прибуток за вихідні дні:")
+      console.log(weekendDaysIncome)
+
+      // 5. максимальний прибуток за середу;
+      function getMaxProfitForWednesday(storesProfits, day) {
+        let maxProfitDay = -Infinity
+        for (let i = 0; i < storesProfits.length; i++) {
+          if (storesProfits[i][day - 1] > maxProfitDay) maxProfitDay = storesProfits[i][day - 1]
+        }
+        return maxProfitDay
+      }
+
+      const maxProfitForWednesday = getMaxProfitForWednesday(array, 3)
+      console.log("5. максимальний прибуток за середу:")
+      console.log(maxProfitForWednesday)
+
+      // 6. сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200;
+      function getListProfitsMoreThan200(storesProfits) {
+        let listProfitsMoreThan200 = []
+        for (const store of storesProfits) {
+          for (const profit of store) {
+            if (profit > 200) listProfitsMoreThan200.push(profit)
+          }
+        }
+        return listProfitsMoreThan200
+      }
+
+      const listProfitsMoreThan200 = getListProfitsMoreThan200(array)
+      console.log("6. сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200:")
+      console.log(listProfitsMoreThan200)
+
+      // 7. відсортувати кожен тиждень за зростанням;
+      function getSortEachWeekByGrowth(storesProfits) {
+        const copyArr = JSON.parse(JSON.stringify(storesProfits))
+        return copyArr.map((el) => el.sort((a, b) => a - b))
+      }
+
+      const sortArrEachWeekByGrowth = getSortEachWeekByGrowth(array)
+      console.log("7. відсортувати кожен тиждень за зростанням:")
+      console.log(sortArrEachWeekByGrowth)
+
+      // 8. відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків;
+      function getSortEachWeekByDecreasMaxEl(storesProfits) {
+        const copyArr = JSON.parse(JSON.stringify(storesProfits))
+        return copyArr.sort((firstProfit, secondProfit) => Math.max(...secondProfit) - Math.max(...firstProfit))
+      }
+
+      const sortArrEachWeekByDecreasMaxEl = getSortEachWeekByDecreasMaxEl(array)
+      console.log("8. відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків:")
+      console.log(sortArrEachWeekByDecreasMaxEl)
+
+      // 9. упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти раніше).
+      function getSortEachWeekByDecreasSumInEachRow(storesProfits) {
+        const copyArr = JSON.parse(JSON.stringify(storesProfits))
+        return copyArr.sort((el1, el2) => el2.reduce((prevValue, item) => prevValue + item) - el1.reduce((prevValue, item) => prevValue + item))
+      }
+
+      const sortEachWeekByDecreasSumInEachRow = getSortEachWeekByDecreasSumInEachRow(array)
+      console.log("9. упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти раніше):")
+      console.log(sortEachWeekByDecreasSumInEachRow)
+    </script>
+  </body>
+</html>
