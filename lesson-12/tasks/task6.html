@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 6</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 6</h1>
+    <p class="text">Дано масив імен. Застосовуючи відповідне сортування та бінарний пошук визначити, чи є у масиві ім’я довжиною 5 символів і під яким індексом.</p>
+    <script>
+      let arrNames = ["Vlad", "Sofa", "Petro", "Andriy", "Rauf", "Miriam", "Dana", "Daniel", "Olga", "Susana"]
+
+      // Сортування масиву
+      function insertSort(arr) {
+        for (let k = 1; k < arr.length; k++) {
+          const currentElement = arr[k]
+          i = k - 1
+          while (i >= 0 && arr[i].length > currentElement.length) {
+            arr[i + 1] = arr[i]
+            i--
+          }
+          arr[i + 1] = currentElement
+        }
+        return arr
+      }
+
+      // Бінарний пошук
+      function getIndexByNameLengthUsingBinarySearch(arr, nameLength) {
+        let start = 0
+        let end = arr.length - 1
+        while (start <= end) {
+          const middle = Math.floor((start + end) / 2)
+          if (arr[middle].length === nameLength) return middle
+          if (nameLength > arr[middle].length) start = middle + 1
+          else end = middle - 1
+        }
+        return -1
+      }
+
+      const sortNamesArr = insertSort(arrNames)
+      const findIndexNameByLength = getIndexByNameLengthUsingBinarySearch(sortNamesArr, 5)
+
+      // Вивод результату
+      document.write(`<div class="text-script">Відсортований масив: ${sortNamesArr.join(", ")}.</div>`)
+      if (findIndexNameByLength !== -1) document.write(`<div class="text-script">Ім’я довжиною 5 символів існує. Індекс: ${findIndexNameByLength}.</div>`)
+      else document.write(`<div class="text-script">Ім’я довжиною 5 символів не існує.</div>`)
+    </script>
+  </body>
+</html>

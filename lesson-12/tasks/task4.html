@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 4</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 4</h1>
+    <p class="text">Для розглянутих методів сортування спробувати вивести етапи сортування шляхом виведення відповідних таблиць за зразком. Тобто кожного разу після обміну елементів вивести поточний стан масиву на екран.</p>
+    <script>
+      // Ф-ція генерування рандомного числа
+      function getRandomNumber(minValue, maxValue) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+
+      // Ф-ція генерування одновимірного масиву
+      function generateRandomArray(arrayLength, minValue, maxValue) {
+        const arr = []
+        for (let i = 0; i < arrayLength; i++) {
+          const randomNum = getRandomNumber(minValue, maxValue)
+          arr.push(randomNum)
+        }
+        return arr
+      }
+
+      const array = generateRandomArray(5, 10, 100)
+
+      // ---------------------------------------------------------------------------------------
+      // 1. Сортування бульбашкою.
+      function getChangedArraysByBubbleSort(array) {
+        let changedArrays = []
+        let changed
+        let copyArr = [...array]
+        do {
+          changed = false
+          for (let i = 0; i < array.length; i++) {
+            if (copyArr[i - 1] > copyArr[i]) {
+              ;[copyArr[i], copyArr[i - 1]] = [copyArr[i - 1], copyArr[i]] // ; - дописує Prettier
+              changed = true
+              changedArrays.push([...copyArr])
+            }
+          }
+        } while (changed)
+
+        return [changedArrays, array]
+      }
+
+      const changedArraysByBubbleSort = getChangedArraysByBubbleSort(array)
+
+      // Вивод на екран:
+      document.write(`
+        <div class="text-script">
+          Сортування бульбашкою: <br>
+          Початковий масив: ${changedArraysByBubbleSort[1].join(", ")}.
+        </div>`)
+
+      for (let i = 0; i < changedArraysByBubbleSort[0].length; i++) {
+        const changedArr = changedArraysByBubbleSort[0][i]
+        document.write(`
+        <div class="text-script">
+          Зміна ${i + 1}: ${changedArr.join(", ")}.<br>
+        </div>`)
+      }
+      // ---------------------------------------------------------------------------------------
+      // 2. Сортування змішуванням.
+      function getChangedArraysByMixingSort(array) {
+        let leftIndex = 0
+        let rightIndex = array.length - 1
+        let copyArr = [...array]
+        let changedArrays = []
+
+        while (leftIndex < rightIndex) {
+          for (let i = leftIndex; i < rightIndex; i++) {
+            if (copyArr[i] > copyArr[i + 1]) {
+              ;[copyArr[i], copyArr[i + 1]] = [copyArr[i + 1], copyArr[i]] // ; - дописує Prettier
+              changedArrays.push([...copyArr])
+            }
+          }
+          rightIndex--
+
+          for (let i = rightIndex; i > leftIndex; i--) {
+            if (copyArr[i - 1] > copyArr[i]) {
+              ;[copyArr[i - 1], copyArr[i]] = [copyArr[i], copyArr[i - 1]] // ; - дописує Prettier
+              changedArrays.push([...copyArr])
+            }
+          }
+          leftIndex++
+        }
+
+        return [changedArrays, array]
+      }
+
+      const changedArraysByMixingSort = getChangedArraysByMixingSort(array)
+
+      // Вивод на екран:
+      document.write(`
+        <div class="text-script">
+          Сортування змішуванням: <br>
+          Початковий масив: ${changedArraysByMixingSort[1].join(", ")}.
+        </div>`)
+
+      for (let i = 0; i < changedArraysByMixingSort[0].length; i++) {
+        const changedArr = changedArraysByMixingSort[0][i]
+        document.write(`
+        <div class="text-script">
+          Зміна ${i + 1}: ${changedArr.join(", ")}.<br>
+        </div>`)
+      }
+      // ---------------------------------------------------------------------------------------
+      // 3. Сортування включеннями.
+      function getChangedArraysByInsertSort(array) {
+        let copyArr = [...array]
+        let changedArrays = []
+        for (let k = 0; k < copyArr.length; k++) {
+          const currentElement = copyArr[k]
+          let i = k - 1
+          while (i >= 0 && copyArr[i] > currentElement) {
+            copyArr[i + 1] = copyArr[i]
+            i--
+          }
+          copyArr[i + 1] = currentElement
+          changedArrays.push([...copyArr])
+        }
+
+        return [changedArrays, array]
+      }
+
+      const changedArraysByInsertSort = getChangedArraysByInsertSort(array)
+
+      // Вивод на екран:
+      document.write(`
+        <div class="text-script">
+          Сортування включеннями: <br>
+          Початковий масив: ${changedArraysByInsertSort[1].join(", ")}.
+        </div>`)
+
+      for (let i = 0; i < changedArraysByInsertSort[0].length; i++) {
+        const changedArr = changedArraysByInsertSort[0][i]
+        document.write(`
+        <div class="text-script">
+          Зміна ${i + 1}: ${changedArr.join(", ")}.<br>
+        </div>`)
+      }
+    </script>
+  </body>
+</html>

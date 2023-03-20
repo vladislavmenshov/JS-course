@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 1</h1>
+    <p class="text">Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під час сортування бульбашкою.</p>
+    <script>
+      // Ф-ція генерування рандомного числа
+      function getRandomNumber(minValue, maxValue) {
+        return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+      }
+
+      // Ф-ція генерування одновимірного масиву
+      function generateRandomArray(arrayLength, minValue, maxValue) {
+        const arr = []
+        for (let i = 0; i < arrayLength; i++) {
+          const randomNum = getRandomNumber(minValue, maxValue)
+          arr.push(randomNum)
+        }
+        return arr
+      }
+
+      const array = generateRandomArray(30, 10, 100)
+
+      // Сортування бульбашкою.
+      function bubbleSort(array) {
+        let changed,
+          counter = 0
+        do {
+          changed = false
+          for (let i = 0; i < array.length; i++) {
+            if (array[i - 1] > array[i]) {
+              ;[array[i], array[i - 1]] = [array[i - 1], array[i]] // ; - дописує Prettier
+              changed = true
+              counter++
+            }
+          }
+        } while (changed)
+
+        return [array, counter]
+      }
+
+      const bubbleSortArr = bubbleSort(array)
+
+      // Виводимо результат:
+      document.write(`<div class="text-script">
+        Відсортований масив: ${bubbleSortArr[0].join(", ")}. <br> 
+        Кількість обмінів під час сортування: ${bubbleSortArr[1]}.
+      </div>`)
+    </script>
+  </body>
+</html>
