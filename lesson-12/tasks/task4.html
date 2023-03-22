@@ -38,7 +38,7 @@
         let copyArr = [...array]
         do {
           changed = false
-          for (let i = 0; i < array.length; i++) {
+          for (let i = 1; i < array.length; i++) {
             if (copyArr[i - 1] > copyArr[i]) {
               ;[copyArr[i], copyArr[i - 1]] = [copyArr[i - 1], copyArr[i]] // ; - дописує Prettier
               changed = true
@@ -116,7 +116,7 @@
       function getChangedArraysByInsertSort(array) {
         let copyArr = [...array]
         let changedArrays = []
-        for (let k = 0; k < copyArr.length; k++) {
+        for (let k = 1; k < copyArr.length; k++) {
           const currentElement = copyArr[k]
           let i = k - 1
           while (i >= 0 && copyArr[i] > currentElement) {
