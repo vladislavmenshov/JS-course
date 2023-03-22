@@ -36,7 +36,7 @@
           counter = 0
         do {
           changed = false
-          for (let i = 0; i < array.length; i++) {
+          for (let i = 1; i < array.length; i++) {
             if (array[i - 1] > array[i]) {
               ;[array[i], array[i - 1]] = [array[i - 1], array[i]] // ; - дописує Prettier
               changed = true
