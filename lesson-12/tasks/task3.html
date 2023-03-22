@@ -33,7 +33,7 @@
       // Сортування включеннями.
       function insertSort(array) {
         let counter = 0
-        for (let k = 0; k < array.length; k++) {
+        for (let k = 1; k < array.length; k++) {
           const currentElement = array[k]
           let i = k - 1
           while (i >= 0 && array[i] > currentElement) {
