@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 2</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 2</h1>
+    <p class="text">Нехай x(0) = x(1) = 1, x(i) = x(i-1) + 2(x(i-2)), де i = 1,2,.... Визначити x(n). Розв’язати з використанням рекурсивних і нерекурсивних алгоритмів.</p>
+    <script>
+      // Ф-ція з рекурсивним алгоритмом
+      function getResultWithRecursive(number) {
+        if (number === 0 || number === 1) return 1
+
+        return getResultWithRecursive(number - 1) + 2 * getResultWithRecursive(number - 2)
+      }
+
+      // Ф-ція з нерекурсивним алгоритмом
+      function getResultWithoutRecursive(number) {
+        if (number === 0 || number === 1) return 1
+
+        let x0,
+          x1,
+          xn = 1
+
+        for (let i = 2; i <= number; i++) {
+          xn = x0 + 2 * x1
+          x1 = x0
+          x0 = xn
+        }
+        return xn
+      }
+
+      const resultWithoutRecursive = getResultWithoutRecursive(10)
+      const resultWithRecursive = getResultWithRecursive(10)
+
+      document.write(`<div class="text-script">
+        Результат: ${resultWithRecursive}.
+      </div>`)
+    </script>
+  </body>
+</html>

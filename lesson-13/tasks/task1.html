@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 1</h1>
+    <p class="text">Нехай x(0) = 1, x(i) = x(i-1) + 2(i), де i = 1,2,.... Визначити x(10). Розв’язати з використанням рекурсивних і нерекурсивних алгоритмів.</p>
+    <script>
+      const x = 10
+
+      // Ф-ція з рекурсивним алгоритмом
+      function getResultWithRecursive(number, x = 1, i = 1) {
+        if (number === 0) return x
+
+        x = x + 2 * i
+        return getResultWithRecursive(number - 1, x, (i += 1))
+
+        return res
+      }
+
+      // Ф-ція з нерекурсивним алгоритмом
+      function getResultWithoutRecursive(number) {
+        if (number === 0) return 1
+
+        let res = 1
+        for (let i = 1; i <= number; i++) res += +2 * i
+
+        return res
+      }
+
+      const resultWithoutRecursive = getResultWithoutRecursive(x)
+      const resultWithRecursive = getResultWithRecursive(x)
+
+      document.write(`<div class="text-script">
+        Результат: ${resultWithRecursive}.
+      </div>`)
+    </script>
+  </body>
+</html>

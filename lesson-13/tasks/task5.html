@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 5</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 5</h1>
+    <p class="text">Тренажер додавання. Кожні 10 секунд користувачу задають випадковий приклад з додавання двох цифр і робиться перевірка.</p>
+    <script>
+      function getRandomNum(min, max) {
+        return Math.floor(min + Math.random() * (max - min + 1))
+      }
+
+      function additionalTrainer(min, max) {
+        const firstNum = getRandomNum(min, max)
+        const secondNum = getRandomNum(min, max)
+        const sum = firstNum + secondNum
+        let userAnswer = parseInt(prompt(`${firstNum} + ${secondNum}?`))
+        if (userAnswer === sum) alert("Правильно!")
+        else alert("Не вірно!")
+      }
+
+      setInterval(() => {
+        additionalTrainer(10, 100)
+      }, 10000)
+    </script>
+  </body>
+</html>

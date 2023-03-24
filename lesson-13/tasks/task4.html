@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 4</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 4</h1>
+    <p class="text">
+      З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами видавати по одну букву наперед заданого слова. З використанням нього розробити гру «Прекладач». Виводимо для користувача опис цього слова і по
+      одну букву користувач вводить переклад цього слова. Підрахувати кількість вгаданих букв.
+    </p>
+    <script>
+      function getLetterFromWord(word) {
+        let i = 0
+        return () => {
+          if (i < word.length) {
+            let symbol = word[i]
+            i++
+            return symbol
+          }
+        }
+      }
+
+      function guessWordGame(wordForGame) {
+        let counterCorrectLetter = 0
+        let userAttempt
+        let letter = getLetterFromWord(wordForGame)
+        for (let i = 0; i < wordForGame.length; i++) {
+          userAttempt = prompt(`Найкраща мова програмування? Введіть ${i + 1} літеру загаданого слова на англійській мові.`).toLowerCase()
+          if (userAttempt === letter()) {
+            counterCorrectLetter++
+          }
+        }
+        return [counterCorrectLetter, wordForGame]
+      }
+
+      const resultGame = guessWordGame("javascript")
+
+      document.write(`<div class="text-script">
+        Загадане слово: ${resultGame[1]}. <br>
+        Кількість вгаданих букв: ${resultGame[0]}.
+      </div>`)
+    </script>
+  </body>
+</html>
