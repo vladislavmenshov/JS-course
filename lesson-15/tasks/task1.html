@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 1</h1>
+    <p class="text">Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому випадку.</p>
+    <script>
+      // --- Поля (властивості). ---
+      // Масив, у якому зберігається поле з зайцями.
+      function ShooterGame() {
+        this.gameField = this.createGameField()
+        this.fieldRows = parseInt(prompt("Введіть кількість рядків для ігрового поля:", 5))
+        this.fieldColumns = parseInt(prompt("Введіть кількість колонок для ігрового поля:", 5))
+        this.rabbitsNumber = parseInt(prompt("Введіть кількість зайців для ігрового поля:", 5))
+      }
+
+      // --- Методи (дії). ---
+      // Створення ігрового поля
+      ShooterGame.prototype.createGameField = function () {
+        this.gameField = []
+        for (let i = 0; i < this.fieldRows; i++) {
+          let fillColumnsArr = new Array(this.fieldColumns).fill(0)
+          this.gameField.push(fillColumnsArr)
+        }
+        // Заповнення зайцями ігрового поля
+        for (let i = 0; i < this.rabbitsNumber; i++) {
+          let randomPositionRow, randomPositionColumn
+          do {
+            randomPositionRow = Math.floor(Math.random() * this.gameField.length)
+            randomPositionColumn = Math.floor(Math.random() * this.gameField.length)
+          } while (this.gameField[randomPositionRow][randomPositionColumn] === 1)
+
+          this.gameField[randomPositionRow][randomPositionColumn] = 1
+        }
+        return this.gameField
+      }
+
+      // Метод пострілу (задається позиція пострілу).
+      ShooterGame.prototype.getShot = function () {
+        const coordinateAxisX = parseInt(prompt(`Введіть цифру від 1 до ${this.fieldColumns} по осі Х:`))
+        const coordinateAxisY = parseInt(prompt(`Введіть цифру від 1 до ${this.fieldRows} по осі Y:`))
+        if (this.gameField[coordinateAxisX - 1][coordinateAxisY - 1] === 1) alert("Попадання! Гарна робота!")
+        else alert("Промах!")
+      }
+
+      // Виведення ігрового поля.
+      ShooterGame.prototype.displayField = function () {
+        document.write(`<table class="text-script table">`)
+        for (const row of this.gameField) {
+          document.write(`<tr>`)
+          for (const column of row) {
+            document.write(`<td class="table">${column}</td>`)
+          }
+          document.write(`</tr>`)
+        }
+        document.write(`</table>`)
+      }
+
+      const shooterGame = new ShooterGame()
+
+      shooterGame.createGameField()
+      shooterGame.getShot()
+      shooterGame.displayField()
+    </script>
+  </body>
+</html>

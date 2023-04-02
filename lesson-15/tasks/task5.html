@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 5</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 5</h1>
+    <p class="text">Розробити клас «Керівник танців».</p>
+    <script>
+      const boysNamesArr = ["Петя", "Вася", "Олег", "Влад", "Сашко", "Дмитро", "Штефан"]
+
+      const girlsNamesArr = ["Софія", "Мілана", "Міріам", "Дарья", "Ольга", "Естер", "Надія"]
+
+      class DanceLeader {
+        constructor(boysNames, girlsNames) {
+          this.boysNames = boysNames
+          this.girlsNames = girlsNames
+        }
+
+        getRandomBoyName() {
+          let randomIndex = Math.floor(Math.random() * this.boysNames.length)
+          return this.boysNames[randomIndex]
+        }
+
+        getRandomGirlName() {
+          let randomIndex = Math.floor(Math.random() * this.girlsNames.length)
+          return this.girlsNames[randomIndex]
+        }
+
+        getPairForDancing() {
+          alert(`Пара для танців: ${this.getRandomBoyName()} та ${this.getRandomGirlName()}.`)
+        }
+
+        run() {
+          setInterval(() => {
+            this.getPairForDancing()
+          }, 5000)
+        }
+      }
+
+      const leaderDance = new DanceLeader(boysNamesArr, girlsNamesArr)
+      leaderDance.run()
+    </script>
+  </body>
+</html>

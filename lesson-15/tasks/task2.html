@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 2</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 2</h1>
+    <p class="text">Створити об’єкт «Авто».</p>
+    <script>
+      class Vehicle {
+        constructor(brand, tankSize, availableFuel, seatsNumb, passangersNumb) {
+          this.brand = brand
+          this.tankSize = tankSize
+          this.availableFuel = availableFuel
+          this.seatsNumb = seatsNumb
+          this.passangersNumb = passangersNumb
+        }
+
+        // Заправка на вказану кількість літрів
+        refuelingSpecifiedNumberOfLiters(liters) {
+          if (this.availableFuel + liters > this.tankSize) {
+            const restFuel = this.availableFuel + liters - this.tankSize
+            throw new Error(`Не влізає! Бак буде переповнений. Залишок котрий не влізає: ${restFuel}.`)
+          }
+          console.log("Заправлємо.")
+        }
+
+        // Виведення кількості пасажирів
+        // 1.:
+        outputNumberPassengers() {
+          console.log(`Кількість пассажирів: ${this.passangersNumb}`)
+        }
+        // 2.:
+        // toString() {
+        //   console.log(`Кількість пассажирів: ${this.passangersNumb}`)
+        // }
+
+        // Додавання пасажирів
+        addingPassengers(passangers) {
+          if (this.passangersNumb + passangers > this.seatsNumb) {
+            const restPassangers = this.passangersNumb + passangers - this.seatsNumb
+            throw new Error(`На жаль стільки місць не має. Не достатньо місць для: ${restPassangers} пассажирів.`)
+          }
+          this.passangersNumb += passangers
+          console.log("Куди їдемо? :)")
+        }
+
+        // Висадка пасажирів
+        landingPassengers(dropPassangers) {
+          if (this.passangersNumb - dropPassangers < 0) throw new Error("В нас стільки й немає!")
+          this.passangersNumb -= dropPassangers
+          console.log("До побачення!")
+        }
+      }
+
+      let auto = new Vehicle("Mercedes-Benz", 100, 65, 5, 2)
+
+      console.log("--- Заправка на вказану кількість літрів (20): ---")
+      auto.refuelingSpecifiedNumberOfLiters(20)
+
+      console.log("--- Виведення кількості пасажирів: ---")
+      auto.outputNumberPassengers()
+
+      console.log("--- Додавання пасажирів (2) ---")
+      auto.addingPassengers(2)
+
+      console.log("--- Висадка пасажирів (1): ---")
+      auto.landingPassengers(1)
+    </script>
+  </body>
+</html>
