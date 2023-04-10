@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 3</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 3</h1>
+    <p class="text">Об’єкт “Фірма” (використати члени-класи).</p>
+    <script>
+      class Company {
+        constructor(title, year, month, services, branches) {
+          this.title = title
+          this.createDate = new CreateDate(year, month)
+          this.services = services
+          this.branchesAddress = branches
+        }
+
+        // Визначення кількості років існування фірми
+        getNumberYearsCompany() {
+          return new Date().getFullYear() - this.createDate.Year
+        }
+
+        // Виведення всіх філіалів фірми у вказаному місті
+        showAllBranchesInCity(city) {
+          for (const branch of this.branchesAddress) {
+            if (branch.City === city) document.write(`${branch}<br>`)
+          }
+        }
+
+        // Виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу
+        // !!! В мене чогось цей метод не хоче працювати, якщо прибрати умову, виводить все гарно, не можу зрозуміти що не так з умовою.
+        showAvailableServices(price, time) {
+          for (const service of this.services) {
+            if (service.Price <= price && service.Deadline <= time) document.write(`${service}<br>`)
+          }
+        }
+
+        toString() {
+          return `
+          Title: ${this.title}<br>
+          Date of creation: ${this.createDate}<br>
+          Services: ${this.services}<br>
+          Branches: ${this.branchesAddress}`
+        }
+      }
+
+      class CreateDate {
+        #year
+        #month
+        constructor(year, month) {
+          this.Year = year
+          this.Month = month
+        }
+
+        // -----
+        get Year() {
+          return this.#year
+        }
+
+        get Month() {
+          return this.#month
+        }
+
+        // -----
+        set Year(value) {
+          if (value < 0 || !isFinite(value)) throw new Error("Incorrect value. Try again.")
+          this.#year = value
+        }
+
+        set Month(value) {
+          if (value < 1 || value > 12 || !isFinite(value)) throw new Error("Incorrect value. Try again.")
+          this.#month = value
+        }
+
+        // -----
+        toString() {
+          return `Year: ${this.Year}<br>
+          Month: ${this.Month}`
+        }
+      }
+
+      class Service {
+        #title
+        #price
+        #deadline
+        constructor(title, price, deadline) {
+          this.Title = title
+          this.Price = price
+          this.Deadline = deadline
+        }
+
+        // -----
+        get Title() {
+          return this.#title
+        }
+
+        get Price() {
+          return this.#price
+        }
+
+        get Deadline() {
+          return this.#deadline
+        }
+
+        // -----
+        set Title(value) {
+          if (value.length === 0) throw new Error("Incorrect value. Try again.")
+          this.#title = value
+        }
+
+        set Price(value) {
+          if (value < 0 || !isFinite(value)) throw new Error("Incorrect value. Try again.")
+          this.#price = value
+        }
+
+        set Deadline(value) {
+          if (value < 0 || !isFinite(value)) throw new Error("Incorrect value. Try again.")
+          this.#deadline = value
+        }
+
+        // -----
+        toString() {
+          return `Title: ${this.Title}<br>
+          Price: ${this.Price} $<br>
+          Deadline: ${this.Deadline} day.`
+        }
+      }
+
+      class Branche {
+        #country
+        #city
+        #street
+        #buildingNumber
+        constructor(country, city, street, buildingNumber) {
+          this.Country = country
+          this.City = city
+          this.Street = street
+          this.BuildingNumber = buildingNumber
+        }
+
+        // -----
+        get Country() {
+          return this.#country
+        }
+        get City() {
+          return this.#city
+        }
+        get Street() {
+          return this.#street
+        }
+        get BuildingNumber() {
+          return this.#buildingNumber
+        }
+
+        // -----
+        set Country(country) {
+          if (country.length === 0) throw new Error("Incorrect value. Try again.")
+          this.#country = country
+        }
+        set City(city) {
+          if (city.length === 0) throw new Error("Incorrect value. Try again.")
+          this.#city = city
+        }
+        set Street(street) {
+          if (street.length === 0) throw new Error("Incorrect value. Try again.")
+          this.#street = street
+        }
+        set BuildingNumber(num) {
+          if (!isFinite(num) || num < 0) throw new Error("Incorrect value. Try again.")
+          this.#buildingNumber = num
+        }
+        toString() {
+          return `<div class="text-script">Country: ${this.Country}, city: ${this.City}, street: ${this.Street}, house number: ${this.BuildingNumber}.</div>`
+        }
+      }
+
+      // ==========================
+      const services = [new Service("Фарбування", 1500, 5), new Service("Хімчистка", 2500, 15), new Service("Укладка", 700, 50)]
+
+      const branches = [new Branche("Ukraine", "Melitopol", "Baibulatova", 13), new Branche("Ukraine", "Kirilyvka", "Morska", 15), new Branche("Ukraine", "Kirilyvka", "Kosa Peresip", 19), new Branche("Ukraine", "Uzhorod", "Petefi", 25)]
+
+      let newCompany = new Company("Soprano", 2000, 5, services, branches)
+      // ==========================
+      // newCompany.showAllBranchesInCity("Kirilyvka")
+      // const companyYears = newCompany.getNumberYearsCompany()
+      // console.log(companyYears)
+      newCompany.showAvailableServices(1000, 5)
+    </script>
+  </body>
+</html>

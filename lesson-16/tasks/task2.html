@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 2</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 2</h1>
+    <p class="text">
+      Створити клас TMoney для роботи з грошовими сумами. Сума повинна зберігатися у вигляді доларового еквіваленту. Реалізувати методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, та визначення курсу долара, при якому сума у
+      гривнях збільшиться на 100. Курс долара зберігати в окремому полі.
+    </p>
+    <script>
+      class TMoney {
+        #dollarBalance
+        #dollarExchange
+
+        constructor(dollarBalance, dollarExchange) {
+          this.DollarExchange = dollarExchange
+          this.DollarBalance = dollarBalance
+        }
+
+        // -----------
+        get DollarBalance() {
+          return this.#dollarBalance
+        }
+
+        get DollarExchange() {
+          return this.#dollarExchange
+        }
+
+        // -----------
+        set DollarBalance(value) {
+          if (value < 0 || !isFinite(value)) throw new Error("Incorrect value. Try again.")
+          this.#dollarBalance = Math.round((value / this.#dollarExchange) * 100) / 100
+        }
+
+        set DollarExchange(value) {
+          if (value < 0 || !isFinite(value)) throw new Error("Incorrect value. Try again.")
+          this.#dollarExchange = value
+        }
+
+        // -----------
+        // Методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях.
+        increaseBalance(value) {
+          if (value < 0 || !isFinite(value)) throw new Error("Incorrect value. Try again.")
+          this.DollarBalance = this.DollarBalance * this.DollarExchange + value
+        }
+
+        decreaseBalance(value) {
+          if (value < 0 || !isFinite(value)) throw new Error("Incorrect value. Try again.")
+          this.DollarBalance = this.DollarBalance * this.DollarExchange - value
+        }
+
+        // Визначення курсу долара, при якому сума у гривнях збільшиться на 100
+        getProfitableExchangeRate() {
+          let UAHBalance = this.DollarBalance * this.DollarExchenge
+          return Math.round((((UAHBalance + 100) * this.DollarExchenge) / UAHBalance) * 100) / 100
+        }
+
+        toString() {
+          return `Баланс: ${this.DollarBalance} <br>
+           Курс долара: ${this.DollarExchenge}`
+        }
+      }
+
+      let balanceManager = new TMoney(2000, 38)
+
+      console.log(balanceManager.DollarBalance)
+      balanceManager.increaseBalance(500)
+      console.log(balanceManager.DollarBalance)
+      balanceManager.decreaseBalance(1700)
+      console.log(balanceManager.DollarBalance)
+    </script>
+  </body>
+</html>

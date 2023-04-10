@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 1</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 1</h1>
+    <p class="text">
+      Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата представляється структурою із трьома полями. Реалізувати методи збільшення/зменшення дати на певну кількість днів, місяців чи років. Введення та виведення дати
+      реалізувати за допомогою методу toString.
+    </p>
+    <script>
+      class TDate {
+        #day
+        #month
+        #year
+        constructor(initDay, initMonth, initYear) {
+          this.Day = initDay
+          this.Month = initMonth
+          this.Year = initYear
+        }
+
+        // Гетери
+        get Day() {
+          return this.#day
+        }
+
+        get Month() {
+          return this.#month
+        }
+
+        get Year() {
+          return this.#year
+        }
+
+        // Сетери
+        set Day(day) {
+          if (day < 1 || day > this.getMonthDaysNumber(this.Month)) throw new Error("Incorrect day.")
+          this.#day = day
+        }
+
+        set Month(month) {
+          if (month < 1 || month > 12) throw new Error("Incorrect month.")
+          this.#month = month
+        }
+
+        set Year(year) {
+          if (year <= 0) throw new Error("Incorrect year.")
+          this.#year = year
+        }
+
+        // Методи:
+        // 1. Ф-ція по визначенню кількості днів в місяці
+        getMonthDaysNumber(month) {
+          let result
+          switch (month) {
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+              result = 30
+              break
+            case 2:
+              result = 28
+              break
+            default:
+              result = 31
+              break
+          }
+          return result
+        }
+
+        // 2. Методи збільшення та зменшення кількості років:
+        increaseYear(value) {
+          this.Year += value
+        }
+
+        decreaseYear(value) {
+          this.Year -= value
+        }
+
+        // 3. Методи збільшення та зменшення кількості місяців:
+        increaseMonth(value) {
+          this.increaseYear(Math.floor(this.Month + value - 1) / 12)
+          this.Month = ((this.Month + value - 1) % 12) + 1
+        }
+
+        decreaseMonth(value) {
+          this.decreaseYear(Math.floor((this.Month - val - 1) / 12))
+          this.Month = ((this.Month - (val % 12) + 11) % 12) + 1
+        }
+
+        // 4. Методи збільшення та зменшення кількості днів:
+        increaseDays(value) {
+          const temp = this.Day
+          this.Day = ((this.Day - 1 + value) % this.getMonthDaysNumber(this.Month)) + 1
+          this.increaseMonth(Math.floor((temp - 1 + value) / this.getMonthDaysNumber(this.Month)))
+        }
+
+        decreaseDay(value) {
+          const daysInMonth = this.getMonthDaysNumber(this.Month)
+          this.Day = this.Day - value
+          if (this.day < 1) {
+            this.day = this.day + daysInMonth
+            this.decreaseMonths(1)
+          }
+        }
+
+        toString() {
+          return `${this.Day} - ${this.Month} - ${this.Year}`
+        }
+      }
+
+      let date = new TDate(29, 08, 1995)
+      console.log(date)
+    </script>
+  </body>
+</html>
