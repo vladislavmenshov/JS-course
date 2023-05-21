@@ -3,6 +3,8 @@ My homeworks from the JavaScript course.
 Course: Basics of JS programming.
 Authors: Brila Andriy Yuriyovich | 90 hours, 4 months, 2023.
 
+All JavaScript code is written in an html file in the script tag (at the request of the course to check homework).
+
 This course covered the following topics:
 
 1. Introduction to JS.
