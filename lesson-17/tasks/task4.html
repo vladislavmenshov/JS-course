@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 4</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 4</h1>
+    <p class="text">
+      Склад. База товарів, які зберігаються на складі: назва товару, одиниця виміру, кількість, фірма виробник (назва, реєстраційний номер). Організувати реєстрацію/відвантаження товарів, фільтрація за назвою товару, фільтрація за назвою фірми.
+    </p>
+    <script>
+      class ManufacturerCompany {
+        constructor(name) {
+          this.name = name
+          this.registrationNumber = new Date().getTime()
+        }
+
+        toString() {
+          return `Company name: ${this.name}, registration number: ${this.registrationNumber}.`
+        }
+      }
+
+      class Product {
+        #quantity
+
+        constructor(title, unit, quantity, companyName) {
+          this.title = title
+          this.unit = unit
+          this.Quantity = quantity
+          this.manufacturerCompany = new ManufacturerCompany(companyName)
+        }
+
+        get Quantity() {
+          return this.#quantity
+        }
+
+        set Quantity(value) {
+          if (value < 0 || !isFinite(value)) throw new Error("Incorrect value. Try again.")
+          this.#quantity = value
+        }
+
+        toString() {
+          return `Product title: ${this.title}, unit: ${this.unit}, quantity: ${this.Quantity}, manufacturer company: ${this.manufacturerCompany}.`
+        }
+      }
+
+      class Warehouse {
+        constructor(productList) {
+          this.productList = productList
+        }
+
+        // Організувати реєстрацію/відвантаження товарів, фільтрація за назвою товару, фільтрація за назвою фірми.
+        registrationProduct(product) {
+          this.productList.push(product)
+        }
+
+        shipmentProduct(productTitle, quantity) {
+          const productIndex = this.productList.findIndex((product) => product.title.toLowerCase() === productTitle.toLowerCase())
+          if (productIndex >= 0) {
+            if (this.productList[productIndex].Quantity >= quantity) {
+              this.productList[productIndex].Quantity -= quantity
+            } else {
+              throw new Error(`Not enough ${productTitle} quantity`)
+            }
+          } else {
+            throw new Error(`${productTitle} not found.`)
+          }
+        }
+
+        filterByTitle(searchName) {
+          const searchTitle = this.productList.find((product) => product.title.toLowerCase() === searchName.toLowerCase())
+          if (!searchTitle) throw new Error(`${searchName} not found.`)
+          return searchTitle
+        }
+
+        filterByCompanyName(searchName) {
+          let filtredProductsList = this.productList.filter((product) => product.manufacturerCompany.name === searchName)
+          return filtredProductsList
+        }
+      }
+
+      // -------
+      const productList = [new Product("Luciano", "kg", 3, "Soprano"), new Product("Antonio", "unit", 2, "H&M"), new Product("Iphone", "kg", 8, "Soprano"), new Product("Notebook", "unit", 6, "Rozetka")]
+
+      const warehouse = new Warehouse(productList)
+      // warehouse.addProduct(new Product("Sony Playstation 5", "kg", 1, "Sony"))
+      // warehouse.shipmentProduct("Luciano", 2)
+      // let test = warehouse.filterByTitle("Antonio")
+      // let test = warehouse.filterByTitle("Ooops")
+      // let test = warehouse.filterByCompanyName("Soprano")
+    </script>
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 6</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 6</h1>
+    <p class="text">
+      Дано два класи MultChecker (клас для перевірки таблиці множення - рандомно генеруються числа, які треба перемножати), AddChecker (клас для перевірки додавання - рандомно генеруються числа у заданому діапазоні, які треба додавати). Обидва класи
+      надсилають результати тестування обєкту класу Hystory, який зберігає історію тестування у масиві у вигляді обєктів.
+    </p>
+    <script>
+      class MultChecker {
+        constructor() {}
+        static getRandomNumber(minValue = 1, maxValue = 9) {
+          return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+        }
+        createUserAnswerObj() {
+          return {
+            firstNumber: this.firstNumber,
+            secondNumber: this.secondNumber,
+            userAnswer: this.userAnswer,
+            operation: "*",
+            correctAnswer: this.firstNumber * this.secondNumber,
+          }
+        }
+
+        start() {
+          this.firstNumber = MultChecker.getRandomNumber()
+          this.secondNumber = MultChecker.getRandomNumber()
+
+          this.userAnswer = parseInt(prompt(`${this.firstNumber} * ${this.secondNumber} = ?`))
+
+          History.addHistory(this.createUserAnswerObj())
+        }
+      }
+
+      class AddChecker {
+        constructor(startRangeValue, endRangeValue) {
+          this.startRangeValue = AddChecker.defineMinValue(startRangeValue, endRangeValue)
+          this.endRangeValue = AddChecker.defineMaxValue(startRangeValue, endRangeValue)
+        }
+        static defineMinValue(val1, val2) {
+          let min = val1
+          if (val2 < val1) {
+            min = val2
+          }
+          return min
+        }
+        static defineMaxValue(val1, val2) {
+          let max = val1
+          if (val2 > val1) {
+            max = val2
+          }
+          return max
+        }
+        createUserAnswerObj() {
+          return {
+            firstNumber: this.firstNumber,
+            secondNumber: this.secondNumber,
+            userAnswer: this.userAnswer,
+            operation: "+",
+            correctAnswer: this.firstNumber + this.secondNumber,
+          }
+        }
+        getRandomNumber() {
+          return this.startRangeValue + Math.floor(Math.random() * (this.endRangeValue - this.startRangeValue + 1))
+        }
+
+        start() {
+          this.firstNumber = this.getRandomNumber()
+          this.secondNumber = this.getRandomNumber()
+
+          this.userAnswer = parseInt(prompt(`${this.firstNumber} + ${this.secondNumber} = ?`))
+
+          History.addHistory(this.createUserAnswerObj())
+        }
+      }
+
+      class History {
+        static historyDef
+        static historyArray = []
+        constructor() {
+          if (History.historyDef) {
+            return History.historyDef
+          } else {
+            History.historyDef = this
+          }
+        }
+        static addHistory(object) {
+          this.historyArray.push(object)
+        }
+        static toString() {
+          for (const element of History.historyArray) {
+            for (const key in element) {
+              document.write(`${key}: ${element[key]},<br>`)
+            }
+            document.write("<br>")
+          }
+        }
+      }
+
+      class TestManager {
+        static TestManagerDef
+        constructor(timer, addMinValue, addMaxValue) {
+          if (TestManager.TestManagerDef) {
+            return TestManager.TestManagerDef
+          } else {
+            this.multChecker = new MultChecker()
+            this.addChecker = new AddChecker(addMinValue, addMaxValue)
+            this.testHistory = new History()
+            this.timer = timer
+
+            TestManager.TestManagerDef = this
+          }
+        }
+        chooseRandomChecker() {
+          const choice = Math.round(Math.random())
+          if (choice) {
+            this.multChecker.start()
+          } else {
+            this.addChecker.start()
+          }
+        }
+        startTest(tasksQuantity) {
+          if (tasksQuantity) {
+            setTimeout(() => {
+              this.chooseRandomChecker()
+              this.startTest((tasksQuantity = tasksQuantity - 1))
+            }, this.timer * 1000)
+          }
+          if (!tasksQuantity) document.write(`${History}`)
+        }
+      }
+
+      const testM = new TestManager(2, 1, 199)
+      // console.log(testM)
+      // testM.startTest(4)
+    </script>
+  </body>
+</html>

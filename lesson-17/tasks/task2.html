@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <title>Task 2</title>
+  </head>
+  <body>
+    <h1 class="title">Задача 2</h1>
+    <p class="text">Створити службове авто (водій, марка, номер). Створити клас таким чином, щоб можна було створити тільки один екземпляр цього класу.</p>
+    <script>
+      class Auto {
+        static autoRef
+        constructor(driver, model, number) {
+          if (Auto.autoRef) return Auto.autoRef
+
+          this.driver = driver
+          this.model = model
+          this.number = number
+
+          Auto.autoRef = this
+        }
+
+        toString() {
+          return `Driver: ${this.driver}<br>
+          Model: ${this.model}<br>
+          Number: ${this.number}`
+        }
+      }
+
+      const newAuto = new Auto("Vlad", "Skoda Fabia", "KA3678ET")
+      console.log(newAuto)
+      const newAuto2 = new Auto("Oleh", "Skoda Octavia", "KA7777ET")
+      console.log(newAuto2)
+    </script>
+  </body>
+</html>
